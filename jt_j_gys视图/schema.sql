@@ -187,11 +187,8 @@ fields (
 	zzjgdm         type string,
 	yyzz           type string,
 	sfzxck         type string,
-	jsdwmc    	   type expr data type string value iilmap("jt_j_dwxx_map",jsdwid),
-	ywyid     				type string default value '',
-	zdytjfl1  				type string default value '',
-	zdytjfl2  				type string default value '',
-	zdytjfl3  				type string default value ''
+	vf_jsdwmc    	   type expr data type string value iilmap("jt_j_dwxx_map",jsdwid)
+
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -213,7 +210,7 @@ fields (
 	djsdid    			    type string,
 	zjm       				type string,
 	wxtbh     				type string,
-	ywyid     				type string default value '',
+	ywyid     				type string,
 	sfid      				type string,
 	dqid      				type string,
 	yzbm     				type string,
@@ -227,9 +224,9 @@ fields (
 	email     				type string,
 	wz        				type string,
 	gysfwptid 				type string,
-	zdytjfl1  				type string default value '',
-	zdytjfl2  				type string default value '',
-	zdytjfl3  				type string default value '',
+	zdytjfl1  				type string,
+	zdytjfl2  				type string,
+	zdytjfl3  				type string,
 	zt        				type string,
 	cjr       				type string,
 	tyr       			    type string,
@@ -249,7 +246,6 @@ fields (
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
 create parser jt_j_gys_parser
 type rcd
 schema jt_j_gys_schema;

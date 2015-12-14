@@ -53,7 +53,7 @@ fields: [
 (fname:"jsdwid", alias:"djsdid"),
 (fname:"zjm"),
 (fname:"dwtjbh", alias:"wxtbh"),
-(fname:"ywyid"),
+(fname:"null", alias:"ywyid",type:"string"),
 (fname:"sfid"),
 (fname:"dqid"),
 (fname:"yzbm"),
@@ -67,9 +67,9 @@ fields: [
 (fname:"email"),
 (fname:"wz"),
 (fname:"dwid",alias:"gysfwptid"),
-(fname:"zdytjfl1"),
-(fname:"zdytjfl2"),
-(fname:"zdytjfl3"),
+(fname:"null", alias:"zdytjfl1",type:"string"),
+(fname:"null", alias:"zdytjfl2",type:"string"),
+(fname:"null", alias:"zdytjfl3",type:"string"),
 (fname:"zt"),
 (fname:"cjr"),
 (fname:"tyr"),
@@ -84,7 +84,7 @@ fields: [
 (fname:"cgjszq"),
 (fname:"yyzz"),
 (fname:"zzjgdm"),
-(fname:"jsdwmc")
+(fname:"vf_jsdwmc",alias:"jsdwmc")
 ],
 inputs: "jt_j_dwxx1_dataset",
 conditions:"gyslxid>'0'"
@@ -100,7 +100,8 @@ dataproc index jt_j_gys_index1
 (  
   inputs:"jt_j_dwxx1_select",
   table:"jt_j_gys",
-  format:"jt_j_gys_parser"
+  format:"jt_j_gys_parser",
+  fields:("gysid","gysbh","gysmc","gysjc","djsdbz","djsdbz","zjm","wxtbh","ywyid","sfid","dqid","yzbm","dz","dh","cz","lxr","khyh","zh","sh","email","wz","gysfwptid","zdytjfl1","zdytjfl2","zdytjfl3","zt","cjr","tyr","czrq","gyslxid","dwid","dwjb","yxzf","sjgysid","dwsxid","kpsx","cgjszq","yyzz","zzjgdm","jsdwmc")
 ); 
 end;
 run job jt_j_gys_job(threads:8);
