@@ -1,0 +1,50 @@
+CREATE OR REPLACE VIEW jt_j_gys AS
+SELECT JT_J_DWXX.DWID GYSID,
+       JT_J_DWXX.DWBH GYSBH ,
+       JT_J_DWXX.DWMC GYSMC,
+       JT_J_DWXX.DWJC GYSJC,
+       JT_J_DWXX.Djsdbz DJSDBZ,
+       JT_J_DWXX.JSDWID DJSDID,
+       JT_J_DWXX.Zjm ZJM ,
+       JT_J_DWXX.Dwtjbh WXTBH,
+       '' YWYID,
+          JT_J_DWXX.Sfid SFID ,
+          JT_J_DWXX.Dqid DQID ,
+          JT_J_DWXX.Yzbm YZBM ,
+          JT_J_DWXX.Txdz DZ ,
+          JT_J_DWXX.Dh DH ,
+          JT_J_DWXX.Cz CZ ,
+          JT_J_DWXX.Lxr LXR ,
+          JT_J_DWXX.Khyh KHYH ,
+          JT_J_DWXX.Zh ZH ,
+          JT_J_DWXX.Sh SH ,
+          --JT_J_DWXX.Ysfxid YSFXID,
+ --JT_J_DWXX.Ysfsid MRYSFSID,
+ --JT_J_DWXX.Kjdz KJDZ,
+ --JT_J_DWXX.Mjdz MJDZ,
+
+          JT_J_DWXX.Email EMAIL,
+          JT_J_DWXX.Wz WZ,
+          JT_J_DWXX.Dwid GYSFWPTID,
+          '' ZDYTJFL1,
+             '' ZDYTJFL2,
+                '' ZDYTJFL3,
+                   JT_J_DWXX.Zt ZT,
+                   JT_J_DWXX.Cjr CJR,
+                   JT_J_DWXX.Tyr TYR,
+                   JT_J_DWXX.Czrq CZRQ,
+                   JT_J_DWXX.Gyslxid GYSLXID,
+                   JT_J_DWXX.DWID DWID,
+                   JT_J_DWXX.Dwjb DWJB,
+                   JT_J_DWXX.Yxzf YXZF,
+                   JT_J_DWXX.Sjdwid SJGYSID,
+                   /* 2010-09-14 zhaowenpan start */
+                   JT_J_DWXX.Dwsxid,
+                   JT_J_DWXX.Kpsx,
+                   /* 2010-09-14 zhaowenpan end */
+                   jt_j_dwxx.cgjszq, yyzz, zzjgdm,
+  (SELECT dwmc
+   FROM jt_j_dwxx s
+   WHERE s.dwid = jt_j_dwxx.jsdwid) jsdwmc
+FROM JT_J_DWXX
+WHERE Jt_j_Dwxx.Gyslxid >'0' ;
