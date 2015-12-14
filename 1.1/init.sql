@@ -1,112 +1,112 @@
 create job map_job11(t1)
 begin
-dataset file Jt_j_Gys_dataset
+dataset file jt_j_gys_dataset
 (
-  filename:/home/natt/xinhua/Jt_j_Gys.csv,
+  filename:/home/natt/xinhua/jt_j_gys.csv,
   serverid:0,
-  schema:Jt_j_Gys_schema,
+  schema:jt_j_gys_schema,
   charset:utf-8,
   splitter:(block_size:1000)
 );
-dataproc index Jt_j_Gys_index1
+dataproc index jt_j_gys_index1
 (
-  inputs:"Jt_j_Gys_dataset",
-  table:"Jt_j_Gys",
-  indexes:(Jt_j_Gys_index)
+  inputs:"jt_j_gys_dataset",
+  table:"jt_j_gys",
+  indexes:(jt_j_gys_index)
  );
- dataproc doc Jt_j_Gys_doc
+ dataproc doc jt_j_gys_doc
 (  
-  inputs:"Jt_j_Gys_dataset",
-  table:"Jt_j_Gys",
-  format:"Jt_j_Gys_parser"
+  inputs:"jt_j_gys_dataset",
+  table:"jt_j_gys",
+  format:"jt_j_gys_parser"
   
 ); 
-dataproc map Jt_j_Gys_map
+dataproc map jt_j_gys_map
 (  
-   inputs:"Jt_j_Gys_dataset",
-   table:"Jt_j_Gys"
+   inputs:"jt_j_gys_dataset",
+   table:"jt_j_gys"
 );
 
-dataset file Jt_c_Gysys_dataset
+dataset file jt_c_gysys_dataset
 (
-  filename:/home/natt/xinhua/Jt_c_Gysys.csv,
+  filename:/home/natt/xinhua/jt_c_gysys.csv,
   serverid:0,
-  schema:Jt_c_Gysys_schema,
+  schema:jt_c_gysys_schema,
   charset:utf-8,
   splitter:(block_size:1000)
 );
-dataproc index Jt_c_Gysys_index1
+dataproc index jt_c_gysys_index1
 (
-  inputs:"Jt_c_Gysys_dataset",
-  table:"Jt_c_Gysys",
-  indexes:(Jt_c_Gysys_index)
+  inputs:"jt_c_gysys_dataset",
+  table:"jt_c_gysys",
+  indexes:(jt_c_gysys_index)
  );
- dataproc doc Jt_c_Gysys_doc
+ dataproc doc jt_c_gysys_doc
 (  
-  inputs:"Jt_c_Gysys_dataset",
-  table:"Jt_c_Gysys",
-  format:"Jt_c_Gysys_parser"
+  inputs:"jt_c_gysys_dataset",
+  table:"jt_c_gysys",
+  format:"jt_c_gysys_parser"
   
 ); 
-dataproc map Jt_c_Gysys_map
+dataproc map jt_c_gysys_map
 (  
-   inputs:"Jt_c_Gysys_dataset",
-   table:"Jt_c_Gysys"
+   inputs:"jt_c_gysys_dataset",
+   table:"jt_c_gysys"
 );
 end;
 
-dataset file Jt_w_Cgsh_dataset
+dataset file jt_w_cgsh_dataset
 (
-  filename:/home/natt/xinhua/Jt_w_Cgsh.csv,
+  filename:/home/natt/xinhua/jt_w_cgsh.csv,
   serverid:0,
-  schema:Jt_w_Cgsh_schema,
+  schema:jt_w_cgsh_schema,
   charset:utf-8,
   splitter:(block_size:1000)
 );
-dataproc index Jt_w_Cgsh_index1
+dataproc index jt_w_cgsh_index1
 (
-  inputs:"Jt_w_Cgsh_dataset",
-  table:"Jt_w_Cgsh",
-  indexes:(Jt_w_Cgsh_index)
+  inputs:"jt_w_cgsh_dataset",
+  table:"jt_w_cgsh",
+  indexes:(jt_w_cgsh_index)
  );
- dataproc doc Jt_w_Cgsh_doc
+ dataproc doc jt_w_cgsh_doc
 (  
-  inputs:"Jt_w_Cgsh_dataset",
-  table:"Jt_w_Cgsh",
-  format:"Jt_w_Cgsh_parser"
+  inputs:"jt_w_cgsh_dataset",
+  table:"jt_w_cgsh",
+  format:"jt_w_cgsh_parser"
   
 ); 
-dataproc map Jt_w_Cgsh_map
+dataproc map jt_w_cgsh_map
 (  
-   inputs:"Jt_w_Cgsh_dataset",
-   table:"Jt_w_Cgsh"
+   inputs:"jt_w_cgsh_dataset",
+   table:"jt_w_cgsh"
 );
 
-dataset file Jt_j_Cwdl_dataset
+dataset file jt_j_cwdl_dataset
 (
-  filename:/home/natt/xinhua/Jt_j_Cwdl.csv,
+  filename:/home/natt/xinhua/jt_j_cwdl.csv,
   serverid:0,
-  schema:Jt_j_Cwdl_schema,
+  schema:jt_j_cwdl_schema,
   charset:utf-8,
   splitter:(block_size:1000)
 );
-dataproc index Jt_j_Cwdl_index1
+dataproc index jt_j_cwdl_index1
 (
-  inputs:"Jt_j_Cwdl_dataset",
-  table:"Jt_j_Cwdl",
-  indexes:(Jt_j_Cwdl_index)
+  inputs:"jt_j_cwdl_dataset",
+  table:"jt_j_cwdl",
+  indexes:(jt_j_cwdl_index)
  );
- dataproc doc Jt_j_Cwdl_doc
+ dataproc doc jt_j_cwdl_doc
 (  
-  inputs:"Jt_j_Cwdl_dataset",
-  table:"Jt_j_Cwdl",
-  format:"Jt_j_Cwdl_parser"
+  inputs:"jt_j_cwdl_dataset",
+  table:"jt_j_cwdl",
+  format:"jt_j_cwdl_parser"
   
 ); 
-dataproc map Jt_j_Cwdl_map
+dataproc map jt_j_cwdl_map
 (  
-   inputs:"Jt_j_Cwdl_dataset",
-   table:"Jt_j_Cwdl"
+   inputs:"jt_j_cwdl_dataset",
+   table:"jt_j_cwdl"
 );
 
 dataset file jt_j_fxfl_rjfl_dataset
@@ -166,54 +166,53 @@ end;
 run job map_job11(threads:8);
 
 
-create job Jt_w_Cgshmx_job(Jt_w_Cgshmx)
+create job jt_w_cgshmx_job(jt_w_cgshmx)
 begin
-dataset file Jt_w_Cgshmx_dataset
+dataset file jt_w_cgshmx_dataset
 (
-  filename:/home/natt/xinhua/Jt_w_Cgshmx.csv,
+  filename:/home/natt/xinhua/jt_w_cgshmx.csv,
   serverid:0,
-  schema:Jt_w_Cgshmx_schema,
+  schema:jt_w_cgshmx_schema,
   charset:utf-8,
   splitter:(block_size:1000)
 );
 
-dataproc select Jt_w_Cgshmx_select
+dataproc select jt_w_cgshmx_select
 (
 fields: [ 
-(fname:"vf_Cgshdh"),
-(fname:"vf_Dgysid"),
-(fname:"vf_Gysmc"),
+(fname:"vf_cgshdh"),
+(fname:"vf_dgysid"),
+(fname:"vf_gysmc"),
 (fname:"vf_cwdlid"),
-(fname:"vf_Cwfl"),
+(fname:"vf_cwfl"),
 (fname:"vf_rjfxid"),
 (fname:"vf_rjflmc"),
-(fname:"Sssl"),
-(fname:"Ssmy"),
-(fname:"Sssy"),
-(fname:"vf_Dhrq")
+(fname:"sssl"),
+(fname:"ssmy"),
+(fname:"sssy"),
+(fname:"vf_dhrq")
 ],
-inputs: "Jt_w_Cgshmx_dataset",
-group_by:("vf_Cgshdh","vf_Dgysid","vf_Gysmc","vf_cwdlid","vf_Cwfl","vf_rjfxid","vf_rjflmc","vf_Dhrq")
+inputs: "jt_w_cgshmx_dataset",
+group_by:("vf_cgshdh","vf_dgysid","vf_gysmc","vf_cwdlid","vf_cwfl","vf_rjfxid","vf_rjflmc","vf_dhrq")
 );
 
-dataproc index Jt_w_Cgshmx_index1
+dataproc index jt_w_cgshmx_index1
 (
-  inputs:"Jt_w_Cgshmx_select",
-  table:"Jt_w_Cgshmx",
-  indexes:(Jt_w_Cgshmx_index)
+  inputs:"jt_w_cgshmx_select",
+  table:"jt_w_cgshmx",
+  indexes:(jt_w_cgshmx_index)
  );
- dataproc doc Jt_w_Cgshmx_doc
+ dataproc doc jt_w_cgshmx_doc
 (  
-  inputs:"Jt_w_Cgshmx_select",
-  table:"Jt_w_Cgshmx",
-  format:"Jt_w_Cgshmx_parser"
+  inputs:"jt_w_cgshmx_select",
+  table:"jt_w_cgshmx",
+  format:"jt_w_cgshmx_parser"
 ); 
-dataproc statistics Jt_w_Cgshmx_sum1
+dataproc statistics jt_w_cgshmx_sum1
 (
-	stat_model:"Jt_w_Cgshmx_sum",
-  	table:"Jt_w_Cgshmx",
-  	inputs:"Jt_w_Cgshmx_select"
+	stat_model:"jt_w_cgshmx_sum",
+  	table:"jt_w_cgshmx",
+  	inputs:"jt_w_cgshmx_select"
 );
 end;
-run job Jt_w_Cgshmx_job(threads:8);
-
+run job jt_w_cgshmx_job(threads:8);
