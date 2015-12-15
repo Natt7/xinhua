@@ -15,13 +15,11 @@ fields (
 	 cjr                   type string,
 	 tyr                   type string,
 	 czrq                  type string,
-	 cwdlid                type string,
-	 tyrq                  type string
+	 cwdlid                type string
 )
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
 create parser jt_j_fxfl_parser
 type rcd
 schema jt_j_fxfl_schema;
@@ -40,7 +38,6 @@ fields (
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
 create parser jt_j_fxfl_rjfl_parser
 type rcd
 schema jt_j_fxfl_rjfl_schema;
