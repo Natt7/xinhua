@@ -4,7 +4,12 @@ use db;
 create schema jt_j_gysys_schema
 source type csv
 fields (
-	sfzxck         type string
+	 ygysid        type string,
+	 dgysid        type string,
+	 gysysid   	   type string,
+	 zt            type string,
+	 czsj          type datetime,
+	 czr           type string
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -13,7 +18,7 @@ create parser jt_j_gysys_parser
 type rcd
 schema jt_j_gysys_schema;
 create table jt_j_gysys using jt_j_gysys_parser;
-create index jt_j_gysys_index on table jt_j_gysys(dwid);
+create index jt_j_gysys_index on table jt_j_gysys(ygysid);
 
 create schema jt_j_gys_schema
 source type csv
@@ -62,14 +67,13 @@ fields (
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
 create parser jt_j_gys_parser
 type rcd
 schema jt_j_gys_schema;
 create table jt_j_gys using jt_j_gys_parser;
-create index jt_j_gys_index on table jt_j_gys(dwid);
+create index jt_j_gys_index on table jt_j_gys(gysid); 
 
-create schema Jt_w_Cgsh_schema
+create schema jt_w_cgsh_schema
 source type csv
 fields (
 	cgshid        	 type string,
@@ -144,12 +148,11 @@ fields (
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
-create parser Jt_w_Cgsh_parser
+create parser jt_w_cgsh_parser
 type rcd
-schema Jt_w_Cgsh_schema;
-create table Jt_w_Cgsh using Jt_w_Cgsh_parser;
-create index Jt_w_Cgsh_index on table Jt_w_Cgsh(cgshid);
+schema jt_w_cgsh_schema;
+create table jt_w_cgsh using jt_w_cgsh_parser;
+create index jt_w_cgsh_index on table jt_w_cgsh(cgshid);
 
 create schema jt_c_gysys_schema
 source type csv
