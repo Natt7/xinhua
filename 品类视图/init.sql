@@ -32,7 +32,7 @@ order_by:("fxflid1"),
 group_by:("fxflid1")
 );
 
-dataproc join dj_cj_join
+dataproc leftjoin dj_cj_join
 (
 inputs: (left_input: jt_j_fxfl_select, right_input: jt_j_fxfl_select1),
 join_keys: (("left_input.fxflfid","right_input.fxflid1"))
@@ -63,7 +63,7 @@ order_by:("rjfxid"),
 group_by:("rjfxid")
 );
 
-dataproc join bj_cj_join
+dataproc leftjoin bj_cj_join
 (
 inputs: (left_input: dj_cj_join_select, right_input: jt_j_fxfl_select2),
 join_keys: (("left_input.fxflfid1","right_input.rjfxid"))
