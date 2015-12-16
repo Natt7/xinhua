@@ -43,28 +43,16 @@ fields (
 	 bbid            type string,
 	 zhlssj          type string,
 	 nocgd           type string,
-	 ysdh            type string,
-	 vf_cgshdh    	 type expr data type string value iilmap("jt_w_cgsh_map",cgshid),
-	 vf_dgysid    	 type expr data type string value iilmap("jt_w_cgsh_map1",cgshid)
-	 vf_gysmc    	 type expr data type string value iilmap("jt_w_cgsh_map2",cgshid)
-	 vf_dhrq    	 type expr data type string value iilmap("jt_w_cgsh_map3",cgshid)
-	 vf_cwdlid    	 type expr data type string value iilmap("jt_j_spxx_map",spxxid)
-	 vf_rjfxid    	 type expr data type string value iilmap("jt_j_spxx_map1",spxxid)
-	 vf_rjflmc    	 type expr data type string value iilmap("jt_j_spxx_map2",spxxid)
-	 vf_cwfl    	 type expr data type string value iilmap("jt_j_spxx_map3",spxxid)
+	 ysdh            type string
 )
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
 create parser jt_w_cgshmx_parser
 type rcd
 schema jt_w_cgshmx_schema;
 create table jt_w_cgshmx using jt_w_cgshmx_parser;
-create index jt_w_cgshmx_index on table jt_w_cgshmx(fxflid);
-create statistics model jt_w_cgshmx_sum on table jt_w_cgshmx
-group by ("vf_cgshdh","vf_dgysid","vf_gysmc","vf_cwdlid","vf_cwfl","vf_rjfxid","vf_rjflmc","vf_dhrq")
-measures (sum(sssl),sum(ssmy),sum(sssy));
+create index jt_w_cgshmx_index on table jt_w_cgshmx(cgshmxid);
 
 
 create schema jt_w_cgsh_schema
@@ -137,35 +125,16 @@ fields (
 	ykbz             type string,
 	cwhxrq           type datetime,
 	dzqrrq           type datetime,
-	dzqrr            type string,
-	vf_dgysid    	 type expr data type string value iilmap("jt_c_gysys_map",cgshid),
-	vf_gysmc    	 type expr data type string value iilmap("jt_c_gysys_map1",cgshid)
+	dzqrr            type string
 )
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
 create parser jt_w_cgsh_parser
 type rcd
 schema jt_w_cgsh_schema;
 create table jt_w_cgsh using jt_w_cgsh_parser;
 create index jt_w_cgsh_index on table jt_w_cgsh(cgshid);
-create map jt_w_cgsh_map on table jt_w_cgsh
-key (cgshid)
-value (cgshdh)
-type string;
-create map jt_w_cgsh_map1 on table jt_w_cgsh
-key (cgshid)
-value (vf_dgysid)
-type string;
-create map jt_w_cgsh_map2 on table jt_w_cgsh
-key (cgshid)
-value (vf_gysmc)
-type string;
-create map jt_w_cgsh_map3 on table jt_w_cgsh
-key (cgshid)
-value (dhrq)
-type string;
 
 create schema jt_j_spxx_schema
 source type csv
@@ -260,67 +229,17 @@ fields (
       nrjj                type string,
       fmtp                type string,
       zddm                type string,
-      spndj               type double,
-      spjyxj              type double,
-      mdid                type string,
-      splbid              type string,
-      hhbm                type string,
-      sppfjg              type double,
-      jldw                type string,
-      jyxszk              type double,
-      jyzgxszk            type double,
-      jyzdxszk            type double,
-      zgpfzk              type double,
-      zdpfzk              type double,
-      sppfzk              type double,
-      sfsn                type string,
-      bddt                type string,
-      bdxt                type string,
-      xtftp               type string,
-      dtftp               type string,
-      xt                  type string,
-      dt                  type string,
-      nspxxid             type string,
-      wjdz                type string,
-      bjtj                type string,
-      mtpl                type string,
-      llcs                type u64,
-      spml                type string,
-      spys                type u64,
-      spjj                type string,
-      wsjg                type double,
-      wsxz                type double,
-	  vf_cwdlid    	     type expr data type string value iilmap("jt_j_fxfl_rjfl_map",fxflid)
-	  vf_rjfxid    	     type expr data type string value iilmap("jt_j_fxfl_rjfl_map1",fxflid)
-	  vf_rjflmc    	     type expr data type string value iilmap("jt_j_fxfl_rjfl_map2",fxflid)
-	  vf_cwfl    	     type expr data type string value iilmap("jt_j_fxfl_rjfl_map3",fxflid)
-                    
+	  splbid              type string,
+      splxid              type string
 )
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
 create parser jt_j_spxx_parser
 type rcd
 schema jt_j_spxx_schema;
 create table jt_j_spxx using jt_j_spxx_parser;
-create index jt_j_spxx_index on table jt_j_spxx(fxflid); 
-create map jt_j_spxx_map on table jt_j_spxx
-key (spxxid)
-value (vf_cwdlid)
-type string;
-create map jt_j_spxx_map1 on table jt_j_spxx
-key (spxxid)
-value (vf_rjfxid)
-type string;
-create map jt_j_spxx_map2 on table jt_j_spxx
-key (spxxid)
-value (vf_rjflmc)
-type string;
-create map jt_j_spxx_map3 on table jt_j_spxx
-key (spxxid)
-value (vf_cwfl)
-type string;
+create index jt_j_spxx_index on table jt_j_spxx(spxxid);
 
 create schema jt_j_fxfl_rjfl_schema
 source type csv
@@ -329,92 +248,132 @@ fields (
 	fxflmc           type string,
 	rjfxid           type string,
 	rjflmc           type string,
-	cwdlid           type string,
-	vf_cwfl    	     type expr data type string value iilmap("jt_j_cwdl_map",cwdlid)
-)
-record delimiter "lf" 
-field delimiter "," 
-text qualifier "dqm";
-
-create parser jt_j_fxfl_rjfl_parser
-type rcd
-schema jt_j_fxfl_rjfl_schema;
-create table jt_j_fxfl_rjfl using jt_j_fxfl_rjfl_parser;
-create index jt_j_fxfl_rjfl_index on table jt_j_fxfl_rjfl(fxflid); 
-create map jt_j_fxfl_rjfl_map on table jt_j_fxfl_rjfl
-key (fxflid)
-value (cwdlid)
-type string;
-create map jt_j_fxfl_rjfl_map1 on table jt_j_fxfl_rjfl
-key (fxflid)
-value (rjfxid)
-type string;
-create map jt_j_fxfl_rjfl_map2 on table jt_j_fxfl_rjfl
-key (fxflid)
-value (rjflmc)
-type string;
-create map jt_j_fxfl_rjfl_map3 on table jt_j_fxfl_rjfl
-key (fxflid)
-value (vf_cwfl)
-type string;
-
-create schema jt_j_cwdl_schema
-source type csv
-fields (
-	fxflid           type string,
-)
-record delimiter "lf" 
-field delimiter "," 
-text qualifier "dqm";
-
-create parser jt_j_cwdl_parser
-type rcd
-schema jt_j_cwdl_schema;
-create table jt_j_cwdl using jt_j_cwdl_parser;
-create index jt_j_cwdl_index on table jt_j_cwdl(fxflid);
-create map jt_j_cwdl_map on table jt_j_cwdl
-key (cwdlid)
-value (cwfl)
-type string;
-
-create schema jt_c_gysys_schema
-source type csv
-fields (
-	vf_gysmc    	 type expr data type string value iilmap("jt_j_gys_map",ygysid)
-)
-record delimiter "lf" 
-field delimiter "," 
-text qualifier "dqm";
-
-create parser jt_c_gysys_parser
-type rcd
-schema jt_c_gysys_schema;
-create table jt_c_gysys using jt_c_gysys_parser;
-create index jt_c_gysys_index on table jt_c_gysys(fxflid); 
-create map jt_c_gysys_map on table jt_c_gysys
-key (ygysid)
-value (dgysid)
-type string;
-create map jt_c_gysys_map1 on table jt_c_gysys
-key (ygysid)
-value (vf_gysmc)
-type string;
-
-create schema jt_j_gys_schema
-source type csv
-fields (
 	cwdlid           type string
 )
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
+create parser jt_j_fxfl_rjfl_parser
+type rcd
+schema jt_j_fxfl_rjfl_schema;
+create table jt_j_fxfl_rjfl using jt_j_fxfl_rjfl_parser;
+create index jt_j_fxfl_rjfl_index on table jt_j_fxfl_rjfl(fxflid); 
 
+create schema jt_j_cwdl_schema
+source type csv
+fields (
+	 cwdlid     		type string,
+	 flbh      			type string,
+	 cwfl      			type string,
+	 fljc      			type string,
+	 zjm      			type string,
+	 zt      			type string,
+	 cjr      			type string,
+	 tyr      			type string,
+	 czrq      			type datetime,
+	 sl      			type u64
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser jt_j_cwdl_parser
+type rcd
+schema jt_j_cwdl_schema;
+create table jt_j_cwdl using jt_j_cwdl_parser;
+create index jt_j_cwdl_index on table jt_j_cwdl(cwdlid);
+
+create schema jt_c_gysys_schema
+source type csv
+fields (
+	ygysid     			    type string,
+	dgysid     			    type string,
+	zt     			    	type string
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser jt_c_gysys_parser
+type rcd
+schema jt_c_gysys_schema;
+create table jt_c_gysys using jt_c_gysys_parser;
+create index jt_c_gysys_index on table jt_c_gysys(ygysid);
+
+create schema jt_j_gys_schema
+source type csv
+fields (
+	gysid     			    type string,
+	gysbh     			    type string,
+	gysmc     			    type string,
+	gysjc     			    type string,
+	djsdbz    			    type string,
+	djsdid    			    type string,
+	zjm       				type string,
+	wxtbh     				type string,
+	ywyid     				type string,
+	sfid      				type string,
+	dqid      				type string,
+	yzbm     				type string,
+	dz       				type string,
+	dh       				type string,
+	cz        				type string,
+	lxr       				type string,
+	khyh      				type string,
+	zh        				type string,
+	sh        				type string,
+	email     				type string,
+	wz        				type string,
+	gysfwptid 				type string,
+	zdytjfl1  				type string,
+	zdytjfl2  				type string,
+	zdytjfl3  				type string,
+	zt        				type string,
+	cjr       				type string,
+	tyr       			    type string,
+	czrq      			   	type string,
+	gyslxid   			    type string,
+	dwid      			    type string,
+	dwjb      			    type u64,
+	yxzf      			    type string,
+	sjgysid   			    type string,
+	dwsxid    			    type string,
+	kpsx      			    type string,
+	cgjszq    			    type u64,
+	yyzz      			    type string,
+	zzjgdm    			    type string,
+	jsdwmc    			    type string
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
 create parser jt_j_gys_parser
 type rcd
 schema jt_j_gys_schema;
 create table jt_j_gys using jt_j_gys_parser;
-create index jt_j_gys_index on table jt_j_gys(fxflid); 
-create map jt_j_gys_map on table jt_j_gys
-key (gysid)
-value (gysmc)
-type string;
+create index jt_j_gys_index on table jt_j_gys(gysid); 
+
+create schema 1_1_result_schema
+source type csv
+fields (
+	cgshdh     			    type string,
+	dgysid     			    type string,
+	gysmc     			    type string,
+	cwdlid     			    type string,
+	cwfl    			    type string,
+	rjfxid    			    type string,
+	rjflmc       			type string,
+	sssl     				type double,
+	ssmy     				type double,
+	sssy      				type double,
+	dhrq      				type datetime
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser 1_1_result_parser
+type rcd
+schema 1_1_result_schema;
+create table 1_1_result using 1_1_result_parser;
+create index 1_1_result_index on table 1_1_result(cgshdh); 
+create statistics model 1_1_result_sum on table 1_1_result
+group by ("cgshdh","dgysid","gysmc","cwdlid","cwfl","rjfxid","rjflmc","dhrq")
+measures (sum(sssl),sum(ssmy),sum(sssy));
