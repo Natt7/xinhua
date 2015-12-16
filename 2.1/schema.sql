@@ -52,9 +52,7 @@ fields (
       hycode              type string,
       sbbz                type string,
       khspmxid            type string,
-      ztid                type string,
-      sn                  type string,
-	  vf_dwmc    		  type expr data type string value iilmap("jt_j_dwxx_map",ztid)
+      ztid                type string
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -119,18 +117,15 @@ fields (
 		sdbjs            type double,
 		sbrq             type string,
 		clrq             type string,
-		eccl             type string,
-		ecclrq           type string,
-		mdxtfpid         type string,
-		mdxtfph          type string,
-		mdxtfpcdate      type string,
-		mdxtfpsbrq       type string,
-		xszcb            type double,
 		yswjflag         type string,
 		rjhzid           type string,
 		fhzzflag         type string,
-		fhzzrq           type string,
-		vf_dwmc    		 type expr data type string value iilmap("jt_j_dwxx_map",ztid)
+		fhzzrq           type datetime,
+		mdxtfpid         type string,
+		mdxtfph          type string,
+		mdxtfpcdate      type datetime,
+		mdxtfpsbrq       type datetime,
+		xszcb            type double
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -139,38 +134,123 @@ create parser jt_x_xsd_sb_parser
 type rcd
 schema jt_x_xsd_sb_schema;
 create table jt_x_xsd_sb using jt_x_xsd_sb_parser;
-create index jt_x_xsd_sb_index on table jt_x_xsd_sb(xsdmxid);
+create index jt_x_xsd_sb_index on table jt_x_xsd_sb(xsdid);
 
 
-create schema Ls_Jt_x_Xtdmx_schema
+create schema ls_jt_x_xtdmx_schema
 source type csv
 fields (
-	   cwsdrq            type datetime
+	  xtdmxid   	type string,
+	  xtdid    		type string,
+	  bmspkfmxid    type string,
+	  khspmxid     	type string,
+	  yxfsid    	type string,
+	  zddm    		type string,
+	  spxxid    	type string,
+	  dj    		type double,
+	  xz    		type double,
+	  xj    		type double,
+	  sl    		type double,
+	  xtsl    		type double,
+	  xtsy    		type double,
+	  xtmy    		type double,
+	  yjsl    		type double,
+	  yjsy    		type double,
+	  yjmy    		type double,
+	  qsjsrq    	type datetime,
+	  zhjsrq    	type datetime,
+	  lydjbid    	type string,
+	  lydjid    	type string,
+	  lydjmxid     	type string,
+	  lybmid    	type string,
+	  zt    		type string,
+	  yzt    		type string,
+	  bz    		type string,
+	  zzsl     		type double,
+	  zzsy     		type double,
+	  zzmy     		type double,
+	  xsrq     		type string,
+	  ywbmid    	type string,
+	  sczt     		type string,
+	  gysid    		type string,
+	  jz    		type double,
+	  jj    		type double,
+	  hycode    	type string,
+	  zbkhspmxid    type string,
+	  ztid     		type string
 )
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
-create parser Ls_Jt_x_Xtdmx_parser
+create parser ls_jt_x_xtdmx_parser
 type rcd
-schema Ls_Jt_x_Xtdmx_schema;
-create table Ls_Jt_x_Xtdmx using Ls_Jt_x_Xtdmx_parser;
-create index Ls_Jt_x_Xtdmx_index on table Ls_Jt_x_Xtdmx(xsdid);
+schema ls_jt_x_xtdmx_schema;
+create table ls_jt_x_xtdmx using ls_jt_x_xtdmx_parser;
+create index ls_jt_x_xtdmx_index on table ls_jt_x_xtdmx(xtdmxid);
 
-create schema Ls_Jt_x_Xtd_schema
+create schema ls_jt_x_xtd_schema
 source type csv
 fields (
-	   cwsdrq            type datetime
+	 xtdid                     		type string,
+	 xtdh                     		type string,
+	 xsbmid                      	type string,
+	 wlbmid                      	type string,
+	 khid                       	type string,
+	 ysfsid                      	type string,
+	 jsfsid                      	type string,
+	 djrq                           type datetime,
+	 czyid                        	type string,
+	 pzs                            type double,
+	 xtsl                           type double,
+	 xtsy                           type double,
+	 xtmy                           type double,
+	 yjsl                           type double,
+	 yjsy                           type double,
+	 yjmy                           type double,
+	 qsjsrq                         type datetime,
+	 zhjsrq                         type datetime,
+	 czrq                           type datetime,
+	 zt                  			type string,
+	 yzt                     		type string,
+	 bz                    			type string,
+	 shrid                     		type string,
+	 shdwid                     	type string,
+	 ztid                      		type string,
+	 zzzsl                          type double,
+	 zzzsy                          type double,
+	 zzzmy                          type double,
+	 sl                             type double,
+	 xslx                          	type string,
+	 pzh                          	type string,
+	 xsrq                          	type datetime,
+	 jsztflag  						type string,
+	 pzztflag  						type string,
+	 xtnth  						type string,
+	 hsbmid   						type string,
+	 wlshdh   						type string,
+	 ydh  							type string,
+	 xtfprq   						type datetime,
+	 sbrq 							type datetime,
+	 clrq 							type datetime,
+	 clbz 							type string,
+	 yswjflag  						type string,
+	 rjhzid                    		type string,
+	 fhzzflag    					type string,
+	 fhzzrq                         type datetime,
+	 mdxtfpid                     	type string,
+	 mdxtfph                     	type string,
+	 mdxtfpcdate                    type datetime,
+	 mdxtfpsbrq                   	type datetime,
+	 xtzcb                     		type double
 )
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
-create parser Ls_Jt_x_Xtd_parser
+create parser ls_jt_x_xtd_parser
 type rcd
-schema Ls_Jt_x_Xtd_schema;
-create table Ls_Jt_x_Xtd using Ls_Jt_x_Xtd_parser;
-create index Ls_Jt_x_Xtd_index on table Ls_Jt_x_Xtd(xsdid);
+schema ls_jt_x_xtd_schema;
+create table ls_jt_x_xtd using ls_jt_x_xtd_parser;
+create index ls_jt_x_xtd_index on table ls_jt_x_xtd(xtdid);
 
 
 create schema jt_j_spxx_schema
@@ -266,41 +346,8 @@ fields (
       nrjj                type string,
       fmtp                type string,
       zddm                type string,
-      spndj               type double,
-      spjyxj              type double,
-      mdid                type string,
-      splbid              type string,
-      hhbm                type string,
-      sppfjg              type double,
-      jldw                type string,
-      jyxszk              type double,
-      jyzgxszk            type double,
-      jyzdxszk            type double,
-      zgpfzk              type double,
-      zdpfzk              type double,
-      sppfzk              type double,
-      sfsn                type string,
-      bddt                type string,
-      bdxt                type string,
-      xtftp               type string,
-      dtftp               type string,
-      xt                  type string,
-      dt                  type string,
-      nspxxid             type string,
-      wjdz                type string,
-      bjtj                type string,
-      mtpl                type string,
-      llcs                type u64,
-      spml                type string,
-      spys                type u64,
-      spjj                type string,
-      wsjg                type double,
-      wsxz                type double,
-	  vf_cwdlid    	     type expr data type string value iilmap("jt_j_fxfl_rjfl_map",fxflid)
-	  vf_rjfxid    	     type expr data type string value iilmap("jt_j_fxfl_rjfl_map1",fxflid)
-	  vf_rjflmc    	     type expr data type string value iilmap("jt_j_fxfl_rjfl_map2",fxflid)
-	  vf_cwfl    	     type expr data type string value iilmap("jt_j_fxfl_rjfl_map3",fxflid)
-                    
+	  splbid              type string,
+      splxid              type string
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -309,7 +356,7 @@ create parser jt_j_spxx_parser
 type rcd
 schema jt_j_spxx_schema;
 create table jt_j_spxx using jt_j_spxx_parser;
-create index jt_j_spxx_index on table jt_j_spxx(fxflid); 
+create index jt_j_spxx_index on table jt_j_spxx(spxxid);
 
 create schema jt_j_fxfl_rjfl_schema
 source type csv
@@ -318,50 +365,59 @@ fields (
 	fxflmc           type string,
 	rjfxid           type string,
 	rjflmc           type string,
-	cwdlid           type string,
-	vf_cwfl    	     type expr data type string value iilmap("jt_j_cwdl_map",cwdlid)
+	cwdlid           type string
 )
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
 create parser jt_j_fxfl_rjfl_parser
 type rcd
 schema jt_j_fxfl_rjfl_schema;
 create table jt_j_fxfl_rjfl using jt_j_fxfl_rjfl_parser;
 create index jt_j_fxfl_rjfl_index on table jt_j_fxfl_rjfl(fxflid); 
-create map jt_j_fxfl_rjfl_map on table jt_j_fxfl_rjfl
-key (fxflid)
-value (cwdlid)
-type string;
-create map jt_j_fxfl_rjfl_map1 on table jt_j_fxfl_rjfl
-key (fxflid)
-value (rjfxid)
-type string;
-create map jt_j_fxfl_rjfl_map2 on table jt_j_fxfl_rjfl
-key (fxflid)
-value (rjflmc)
-type string;
-create map jt_j_fxfl_rjfl_map3 on table jt_j_fxfl_rjfl
-key (fxflid)
-value (vf_cwfl)
-type string;
 
 create schema jt_j_cwdl_schema
 source type csv
 fields (
-	fxflid           type string,
+	 cwdlid     		type string,
+	 flbh      			type string,
+	 cwfl      			type string,
+	 fljc      			type string,
+	 zjm      			type string,
+	 zt      			type string,
+	 cjr      			type string,
+	 tyr      			type string,
+	 czrq      			type datetime,
+	 sl      			type u64
 )
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-
 create parser jt_j_cwdl_parser
 type rcd
 schema jt_j_cwdl_schema;
 create table jt_j_cwdl using jt_j_cwdl_parser;
-create index jt_j_cwdl_index on table jt_j_cwdl(fxflid);
-create map jt_j_cwdl_map on table jt_j_cwdl
-key (cwdlid)
-value (cwfl)
-type string;
+create index jt_j_cwdl_index on table jt_j_cwdl(cwdlid);
+
+create schema 2_1_result_schema
+source type csv
+fields (
+	 cwdlid     		type string,
+	 cwfl      			type string,
+	 rjfxid      		type string,
+	 rjflmc      		type string,
+	 xsmy      			type double,
+	 spxxid      		type string,
+	 xsrq      			type datetime
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser 2_1_result_parser
+type rcd
+schema 2_1_result_schema;
+create table 2_1_result using 2_1_result_parser;
+create index 2_1_result_index on table 2_1_result(cwdlid);
+create statistics model 2_1_result_sum on table 2_1_result
+group by ("cwdlid","cwfl","rjfxid","rjflmc","xsrq")
+measures (sum(xsmy),count(DISTINCT spxxid));

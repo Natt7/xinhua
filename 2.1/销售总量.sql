@@ -8,7 +8,7 @@ SELECT Fxfl.Cwdlid,
 FROM
   (SELECT Xs.Ztid,
           Xs.Spxxid,
-          Xs.Xslx,
+          Xd.Xslx,
           Xs.Xssl,
           Xs.Xsmy,
           Xs.Xssy,
