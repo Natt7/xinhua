@@ -745,7 +745,7 @@ create parser ls_jt_x_xtd_parser
 type rcd
 schema ls_jt_x_xtd_schema;
 create table ls_jt_x_xtd using ls_jt_x_xtd_parser;
-create index ls_jt_x_xtd_index on table ls_jt_x_xtd(ygysid);
+create index ls_jt_x_xtd_index on table ls_jt_x_xtd(xtdid);
 
 create schema ls_jt_x_xtdmx_schema
 source type csv
@@ -1086,7 +1086,7 @@ fields (
 record delimiter "lf" 
 field delimiter "," 
 text qualifier "dqm";
-create parser jt_c_khspmx_parser
+create parser jt_g_jtd_parser
 type rcd
 schema jt_g_jtd_schema;
 create table jt_g_jtd using jt_g_jtd_parser;
@@ -1240,3 +1240,90 @@ type rcd
 schema jt_j_gysys_schema;
 create table jt_j_gysys using jt_j_gysys_parser;
 create index jt_j_gysys_index on table jt_j_gysys(ygysid);
+
+create schema jt_j_gys_schema
+source type csv
+fields (
+	gysid     			    type string,
+	gysbh     			    type string,
+	gysmc     			    type string,
+	gysjc     			    type string,
+	djsdbz    			    type string,
+	djsdid    			    type string,
+	zjm       				type string,
+	wxtbh     				type string,
+	ywyid     				type string,
+	sfid      				type string,
+	dqid      				type string,
+	yzbm     				type string,
+	dz       				type string,
+	dh       				type string,
+	cz        				type string,
+	lxr       				type string,
+	khyh      				type string,
+	zh        				type string,
+	sh        				type string,
+	email     				type string,
+	wz        				type string,
+	gysfwptid 				type string,
+	zdytjfl1  				type string,
+	zdytjfl2  				type string,
+	zdytjfl3  				type string,
+	zt        				type string,
+	cjr       				type string,
+	tyr       			    type string,
+	czrq      			   	type string,
+	gyslxid   			    type string,
+	dwid      			    type string,
+	dwjb      			    type u64,
+	yxzf      			    type string,
+	sjgysid   			    type string,
+	dwsxid    			    type string,
+	kpsx      			    type string,
+	cgjszq    			    type u64,
+	yyzz      			    type string,
+	zzjgdm    			    type string,
+	jsdwmc    			    type string
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser jt_j_gys_parser
+type rcd
+schema jt_j_gys_schema;
+create table jt_j_gys using jt_j_gys_parser;
+create index jt_j_gys_index on table jt_j_gys(gysid); 
+
+create schema jt_j_fxfl_rjfl_schema
+source type csv
+fields (
+	fxflid           type string,
+	fxflmc           type string,
+	rjfxid           type string,
+	rjflmc           type string,
+	cwdlid           type string
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser jt_j_fxfl_rjfl_parser
+type rcd
+schema jt_j_fxfl_rjfl_schema;
+create table jt_j_fxfl_rjfl using jt_j_fxfl_rjfl_parser;
+create index jt_j_fxfl_rjfl_index on table jt_j_fxfl_rjfl(fxflid); 
+
+create schema jt_c_gysys_schema
+source type csv
+fields (
+	ygysid     			    type string,
+	dgysid     			    type string,
+	zt     			    	type string
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser jt_c_gysys_parser
+type rcd
+schema jt_c_gysys_schema;
+create table jt_c_gysys using jt_c_gysys_parser;
+create index jt_c_gysys_index on table jt_c_gysys(ygysid); 
