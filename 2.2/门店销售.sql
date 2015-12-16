@@ -11,7 +11,7 @@ SELECT Mx.Ztid,
 FROM
   (SELECT Xs.Ztid,
           Xs.Spxxid,
-          Xs.Xslx,
+          Xd.Xslx,
           Xs.Xssl,
           Xs.Xsmy,
           Xs.Xssy,
