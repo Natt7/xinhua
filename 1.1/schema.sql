@@ -27,7 +27,7 @@ fields (
 	 yfmy            type double,
 	 yfsy            type double,
 	 bz              type string,
-	 zq              type datetime,
+	 zq              type datetime format "%Y/%m/%d",
 	 bh              type string,
 	 jxsl            type u64,
 	 shqx            type string,
@@ -66,14 +66,14 @@ fields (
 	bjs              type u64,
 	gysid            type string,
 	shrid            type string,
-	shrq             type datetime,
+	shrq             type datetime format "%Y/%m/%d",
 	cgbmid           type string,
 	shwlid           type string,
 	shdwid           type string,
 	czyid            type string,
-	dhrq             type datetime,
-	czrq             type datetime,
-	zdrq             type datetime,
+	dhrq             type datetime format "%Y/%m/%d",
+	czrq             type datetime format "%Y/%m/%d",
+	zdrq             type datetime format "%Y/%m/%d",
 	ydzpz            type double,
 	ydzsl            type double,
 	ydzsy            type double,
@@ -96,7 +96,7 @@ fields (
 	pzh              type string,
 	mxhzsy           type double,
 	cysy             type double,
-	ydrq             type datetime,
+	ydrq             type datetime format "%Y/%m/%d",
 	jszq             type u64,
 	cgshdlxid        type string,
 	wxtxsdid         type string,
@@ -105,9 +105,9 @@ fields (
 	ecqr             type string,
 	bbid             type string,
 	lxtzh            type string,
-	ecqrrq           type datetime,
+	ecqrrq           type datetime format "%Y/%m/%d",
 	zhpc             type string,
-	blwcrq           type datetime,
+	blwcrq           type datetime format "%Y/%m/%d",
 	sfbhxs           type string,
 	pzztflag         type string,
 	jsztflag         type string,
@@ -117,14 +117,14 @@ fields (
 	ycshsl           type u64,
 	ycshmy           type double,
 	dzflag           type string,
-	senddate1        type datetime,
-	senddate2        type datetime,
+	senddate1        type datetime format "%Y/%m/%d",
+	senddate2        type datetime format "%Y/%m/%d",
 	sfdz             type string,
 	zdzflag          type string,
 	glzt             type string,
 	ykbz             type string,
-	cwhxrq           type datetime,
-	dzqrrq           type datetime,
+	cwhxrq           type datetime format "%Y/%m/%d",
+	dzqrrq           type datetime format "%Y/%m/%d",
 	dzqrr            type string
 )
 record delimiter "lf" 
@@ -270,7 +270,7 @@ fields (
 	 zt      			type string,
 	 cjr      			type string,
 	 tyr      			type string,
-	 czrq      			type datetime,
+	 czrq      			type datetime format "%Y/%m/%d",
 	 sl      			type u64
 )
 record delimiter "lf" 
@@ -364,7 +364,7 @@ fields (
 	sssl     				type double,
 	ssmy     				type double,
 	sssy      				type double,
-	dhrq      				type datetime
+	dhrq      				type datetime format "%Y/%m/%d"
 )
 record delimiter "lf" 
 field delimiter "," 
