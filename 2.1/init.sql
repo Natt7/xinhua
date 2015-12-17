@@ -121,7 +121,7 @@ fields: (
 (fname:"0-xtsy",type:"double",alias:"xtsy")
 ),
 inputs: "ls_jt_x_xtdmx_dataset",
-order_by:("xsdid","ztid")
+order_by:("xtdid","ztid")
 );
 
 dataproc select ls_jt_x_xtd_select
@@ -133,13 +133,13 @@ fields: (
 (fname:"xsrq")
 ),
 inputs: "ls_jt_x_xtd_dataset",
-order_by:("xsdid1","ztid1")
+order_by:("xtdid1","ztid1")
 );
 
 dataproc leftjoin xtmx_xt_join
 (
 inputs: (left_input: ls_jt_x_xtdmx_select, right_input: ls_jt_x_xtd_select),
-join_keys: (("left_input.xsdid","right_input.xsdid1"),("left_input.ztid","right_input.ztid1"))
+join_keys: (("left_input.xtdid","right_input.xtdid1"),("left_input.ztid","right_input.ztid1"))
 );
 
 dataproc select xtmx_xt_join_select
