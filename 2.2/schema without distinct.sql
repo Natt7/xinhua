@@ -35,7 +35,7 @@ fields (
       zzsl                type double,
       zzsy                type double,
       zzmy                type double,
-      xsrq                type string,
+      xsrq                type datetime format "%Y-%m-%d",
       ywbmid              type string,
       sczt                type string,
       xtsl                type double,
@@ -100,7 +100,7 @@ fields (
 		sl               type double,
 		xslx             type string,
 		pzh              type string,
-		xsrq             type string,
+		xsrq             type datetime format "%Y-%m-%d",
 		scbj             type string,
 		jsztflag         type string,
 		pzztflag         type string,
@@ -169,7 +169,7 @@ fields (
 	  zzsl     		type double,
 	  zzsy     		type double,
 	  zzmy     		type double,
-	  xsrq     		type string,
+	  xsrq     		type datetime format "%Y-%m-%d",
 	  ywbmid    	type string,
 	  sczt     		type string,
 	  gysid    		type string,
@@ -518,4 +518,4 @@ create table 2_2_result using 2_2_result_parser;
 create index 2_2_result_index on table 2_2_result(cwdlid);
 create statistics model 2_2_result_sum on table 2_2_result
 group by ("ztid","dwmc","cwdlid","cwfl","rjfxid","rjflmc","xslx","xsrq")
-measures (sum(xsmy),count(DISTINCT spxxid));
+measures (sum(xsmy),count(spxxid));
