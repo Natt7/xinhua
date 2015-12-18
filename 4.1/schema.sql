@@ -63,14 +63,14 @@ fields (
 	  gysid          type string,
 	  gysshdzid      type string,
 	  ywbmid         type string,
-	  shqrrq         type datetime,
+	  shqrrq         type datetime format "%Y-%m-%d",
 	  wlfhdh         type string,
 	  wlydh          type string,
 	  ywyid          type string,
-	  jtrq           type datetime,
+	  jtrq           type datetime format "%Y-%m-%d",
 	  ysfsid         type string,
 	  wlbmid         type string,
-	  czrq           type datetime,
+	  czrq           type datetime format "%Y-%m-%d",
 	  czyid          type string,
 	  jtpzs          type double,
 	  jtzsl          type double,
@@ -101,13 +101,13 @@ fields (
 	  jsztflag       type string,
 	  dzflag         type string,
 	  sdtbz          type string,
-	  senddate       type datetime,
+	  senddate       type datetime format "%Y-%m-%d",
 	  gysqr          type string,
 	  hgbjs          type u64,
 	  djbjs          type u64,
 	  ykbz           type string,
-	  cwhxrq         type datetime,
-	  dzqrrq         type datetime,
+	  cwhxrq         type datetime format "%Y-%m-%d",
+	  dzqrrq         type datetime format "%Y-%m-%d",
 	  sfdz         	 type string,
 	  dzqrr          type string
 )
@@ -255,7 +255,7 @@ fields (
 	 zt      			type string,
 	 cjr      			type string,
 	 tyr      			type string,
-	 czrq      			type datetime,
+	 czrq      			type datetime format "%Y-%m-%d",
 	 sl      			type u64
 )
 record delimiter "lf" 
@@ -346,7 +346,7 @@ fields (
 	 dgysid      		type string,
 	 gysmc      		type string,
 	 sdmy      			type double,
-	 jtrq      			type datetime
+	 jtrq      			type datetime format "%Y-%m-%d"
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -357,5 +357,5 @@ schema 4_1_result_schema;
 create table 4_1_result using 4_1_result_parser;
 create index 4_1_result_index on table 4_1_result(cwdlid);
 create statistics model 4_1_result_sum on table 4_1_result
-group by ("cwdlid","cwfl","rjfxid","rjflmc","dgysid","gysmc","jzrq")
-measures (nvl(sdmy, 0));
+group by ("cwdlid","cwfl","rjfxid","rjflmc","dgysid","gysmc","jtrq")
+measures (sum(sdmy));
