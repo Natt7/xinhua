@@ -22,8 +22,8 @@ fields (
 	  yjsl             type double,
 	  yjsy             type double,
 	  yjmy             type double,
-	  qsjsrq           type datetime,
-	  zhjsrq           type datetime,
+	  qsjsrq           type datetime format "%Y-%m-%d",
+	  zhjsrq           type datetime format "%Y-%m-%d",
 	  lydjbid          type string,
 	  lydjid           type string,
 	  lydjmxid         type string,
@@ -66,7 +66,7 @@ fields (
 	 khid                          	type string,
 	 ysfsid                         type string,
 	 jsfsid                         type string,
-	 djrq                        	type datetime,
+	 djrq                        	type datetime format "%Y-%m-%d",
 	 czyid                       	type string,
 	 pzs                         	type double,
 	 xtsl                         	type double,
@@ -75,9 +75,9 @@ fields (
 	 yjzsl                        	type double,
 	 yjzsy                        	type double,
 	 yjzmy                        	type double,
-	 qsjsrq                         type datetime,
-	 zhjsrq                         type datetime,
-	 czrq                          	type datetime,
+	 qsjsrq                         type datetime format "%Y-%m-%d",
+	 zhjsrq                         type datetime format "%Y-%m-%d",
+	 czrq                          	type datetime format "%Y-%m-%d",
 	 zt                        	 	type string,
 	 yzt                         	type string,
 	 bz                         	type string,
@@ -90,15 +90,15 @@ fields (
 	 sl                          	type double,
 	 xslx                          	type string,
 	 pzh                           	type string,
-	 xsrq                          	type datetime,
+	 xsrq                          	type datetime format "%Y-%m-%d",
 	 jsztflag      					type string,
 	 pzztflag      					type string,
 	 xtnth         					type string,
 	 hsbmid        					type string,
 	 wlshdh        					type string,
 	 ydh           					type string,
-	 xtfprq            				type datetime,
-	 sbrq             				type datetime,
+	 xtfprq            				type datetime format "%Y-%m-%d",
+	 sbrq             				type datetime format "%Y-%m-%d",
 	 ycbz             				type string,
 	 jzdh             				type string,
 	 fhzzflag         				type string,
@@ -113,8 +113,8 @@ fields (
 	 tjshdwid         				type string,
 	 tjdwid           				type string,
 	 tjflag           				type string,
-	 senddate         				type datetime,
-	 wlshrq           				type datetime,
+	 senddate         				type datetime format "%Y-%m-%d",
+	 wlshrq           				type datetime format "%Y-%m-%d",
 	 thyyid           				type string,
 	 yswjflag         				type string,
 	 ykbz             				type string,
@@ -266,7 +266,7 @@ fields (
 	 zt      			type string,
 	 cjr      			type string,
 	 tyr      			type string,
-	 czrq      			type datetime,
+	 czrq      			type datetime format "%Y-%m-%d",
 	 sl      			type u64
 )
 record delimiter "lf" 
@@ -383,7 +383,7 @@ fields (
 	 khid      			type string,
 	 dwmc      			type string,
 	 xtmy      			type double,
-	 wlshrq      		type datetime
+	 wlshrq      		type datetime format "%Y-%m-%d"
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -395,4 +395,4 @@ create table 4_2_result using 4_2_result_parser;
 create index 4_2_result_index on table 4_2_result(cwdlid);
 create statistics model 4_2_result_sum on table 4_2_result
 group by ("cwdlid","cwfl","rjfxid","rjflmc","khid","dwmc","wlshrq")
-measures (nvl(xtmy, 0));
+measures (sum(xtmy));

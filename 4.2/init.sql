@@ -1,9 +1,13 @@
 create job 4_2_result_sum_job(4_2_result)
 begin
 
-dataset table jt_j_fxfl_rjfl_dataset
+dataset file jt_j_fxfl_rjfl_dataset
 (
-	table:jt_j_fxfl_rjfl;
+  filename:/home/natt/xinhuadata/jt_j_fxfl_rjfl.csv,
+  serverid:0,
+  schema:jt_j_fxfl_rjfl_schema,
+  charset:utf-8,
+  splitter:(block_size:1000)
 );
 
 dataset file jt_x_xtdmx_dataset
@@ -65,7 +69,7 @@ order_by:("xtdid")
 dataproc select jt_x_xtd_select
 (
 fields: [ 
-(fname:"xtdid",alais:"xtdid1"),
+(fname:"xtdid",alias:"xtdid1"),
 (fname:"khid"),
 (fname:"wlshrq")
 ],
@@ -95,7 +99,7 @@ order_by:("spxxid")
 dataproc select jt_j_spxx_select
 (
 fields: [ 
-(fname:"spxxid",alais:"spxxid1"),
+(fname:"spxxid",alias:"spxxid1"),
 (fname:"fxflid")
 ],
 inputs: "jt_j_spxx_dataset",
@@ -125,13 +129,14 @@ order_by:("fxflid")
 dataproc select jt_j_fxfl_rjfl_select
 (
 fields: [ 
-(fname:"fxflid",alais:"fxflid1"),
+(fname:"fxflid",alias:"fxflid1"),
 (fname:"cwdlid"),
 (fname:"rjfxid"),
 (fname:"rjflmc")
 ],
 inputs: "jt_j_fxfl_rjfl_dataset",
 order_by:("fxflid1")
+);
 
 dataproc leftjoin mx_xt_sp_fxfl_join
 (
@@ -159,7 +164,7 @@ order_by:("cwdlid")
 dataproc select jt_j_cwdl_select
 (
 fields: [ 
-(fname:"cwdlid",alais:"cwdlid1"),
+(fname:"cwdlid",alias:"cwdlid1"),
 (fname:"cwfl")
 ],
 inputs: "jt_j_cwdl_dataset",
@@ -193,17 +198,17 @@ order_by:("khid")
 dataproc select jt_j_dwxx_select
 (
 fields: [ 
-(fname:"khid",alais:"khid1"),
+(fname:"dwid",alias:"dwid1"),
 (fname:"dwmc")
 ],
 inputs: "jt_j_dwxx_dataset",
-order_by:("khid1")
+order_by:("dwid1")
 );
 
 dataproc leftjoin mx_xt_sp_fxfl_cw_dw_join
 (
 inputs: (left_input: mx_xt_sp_fxfl_cw_join_select, right_input: jt_j_dwxx_select),
-join_keys: (("left_input.khid","right_input.khid1"))
+join_keys: (("left_input.khid","right_input.dwid1"))
 );
 
 dataproc index 4_2_result_index1
@@ -216,7 +221,8 @@ dataproc index 4_2_result_index1
 (  
   inputs:"mx_xt_sp_fxfl_cw_dw_join",
   table:"4_2_result",
-  format:"4_2_result_parser"
+  format:"4_2_result_parser",
+  fields:("cwdlid","cwfl","rjfxid","rjflmc","khid","dwmc","xtmy","wlshrq")  
 ); 
 dataproc statistics 4_2_result_sum1
 (
@@ -225,4 +231,4 @@ dataproc statistics 4_2_result_sum1
   	inputs:"mx_xt_sp_fxfl_cw_dw_join"
 );
 end;
-run job 4_2_result_sum_job(threads:1);
+run job 4_2_result_sum_job(threads:8);
