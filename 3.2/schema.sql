@@ -46,7 +46,7 @@ fields (
 	 qmkc                  	type double,
 	 qmmy                  	type double,
 	 qmsy                  	type double,
-	 jzrq                  	type datetime,
+	 jzrq                  	type datetime format "%Y-%m-%d",
 	 zt                     type string,
 	 yzt                 	type string,
 	 bz                 	type string,
@@ -59,7 +59,7 @@ fields (
 	 ytsy  					type double,
 	 ytmy  					type double,
 	 ztbz  					type string,
-	 zq                     type datetime,
+	 zq                     type datetime format "%Y-%m-%d",
 	 jxsl                   type double,
 	 xsztsl                 type double,
 	 jtztsl                 type double,
@@ -70,7 +70,7 @@ fields (
 	 jtztmy                 type double,
 	 ktbz    				type string,
 	 shdid                	type string,
-	 tzscrq            		type datetime,
+	 tzscrq            		type datetime format "%Y-%m-%d",
 	 yksl   				type u64,
 	 bbid   				type string,
 	 bcsc   				type string,
@@ -124,7 +124,7 @@ fields (
 	 qmkc                           type double,
 	 qmmy                           type double,
 	 qmsy                           type double,
-	 jzrq                           type datetime,
+	 jzrq                           type datetime format "%Y-%m-%d",
 	 xsfsid                       	type string,
 	 thcs                        	type u64,
 	 zt                        		type string,
@@ -311,7 +311,7 @@ fields (
 	 zt      			type string,
 	 cjr      			type string,
 	 tyr      			type string,
-	 czrq      			type datetime,
+	 czrq      			type datetime format "%Y-%m-%d",
 	 sl      			type u64
 )
 record delimiter "lf" 
@@ -428,7 +428,7 @@ fields (
 	 rjfxid      		type string,
 	 rjflmc      		type string,
 	 qmmy      			type double,
-	 jzrq      			type datetime
+	 jzrq      			type datetime format "%Y-%m-%d"
 )
 record delimiter "lf" 
 field delimiter "," 
