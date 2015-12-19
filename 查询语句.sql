@@ -1,60 +1,171 @@
-select cgshdh,dgysid,gysmc,cwdlid,cwfl,rjfxid,rjflmc,sum(sssl),sum(ssmy),sum(sssy),trunc(dhrq) from 1_1_result;
+1.1
+SELECT cgshdh,
+       dgysid,
+       gysmc,
+       cwdlid,
+       cwfl,
+       rjfxid,
+       rjflmc,
+       sum(sssl),
+       sum(ssmy),
+       sum(sssy),
+       trunc(dhrq)
+FROM 1_1_result
+GROUP BY cgshdh,
+         dgysid,
+         gysmc,
+         cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+         trunc(dhrq);
 
+1.2
+SELECT xsdh,
+       khid,
+       dwmc,
+       CASE ykbz
+           WHEN 'true' THEN '越库'
+           ELSE (CASE zpfh
+                     WHEN 'true' THEN '直配'
+                     ELSE '报订'
+                 END)
+       END,
+       cwdlid,
+       rjfxid,
+       sum(sdsl),
+       sum(sdmy),
+       sum(sdsy),
+       trunc(mdjsrq)
+FROM 1_2_result
+GROUP BY xsdh,
+         khid,
+         dwmc,
+         CASE ykbz
+             WHEN 'true' THEN '越库'
+             ELSE (CASE zpfh
+                       WHEN 'true' THEN '直配'
+                       ELSE '报订'
+                   END)
+         END,
+         cwdlid,
+         rjfxid,
+         trunc(mdjsrq)
+ORDER BY khid,
+         CASE ykbz
+             WHEN 'true' THEN '越库'
+             ELSE (CASE zpfh
+                       WHEN 'true' THEN '直配'
+                       ELSE '报订'
+                   END)
+         END,
+         cwdlid,
+         rjfxid,
+         xsdh;
 
-select xsdh,khid,dwmc,case ykbz when 'true' then '越库' else (case zpfh when 'true' then '直配' else '报订' end) end,cwdlid,rjfxid,sum(sdsl),sum(sdmy),sum(sdsy),trunc(mdjsrq)from 1_2_result;
- select case ykbz when 'true' then '越库' else (case zpfh when 'true' then '直配' else '报订' end) end from 1_2_result;
-
-select cwdlid,
+2.1
+SELECT cwdlid,
        cwfl,
        rjfxid,
        rjflmc,
        sum(xsmy),
-       count(spxxid),
-       trunc(xsrq) from 2_1_result;
+       count(DISTINCT spxxid),
+       trunc(xsrq)
+FROM 2_1_result
+GROUP BY cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+         trunc(xsrq);
 	   
-	   select ztid,dwmc,cwdlid,
+2.2
+SELECT ztid,
+       dwmc,
+       cwdlid,
        cwfl,
        rjfxid,
        rjflmc,
-	   xslx,
+       xslx,
        sum(xsmy),
-       count(spxxid),
-       trunc(xsrq) from 2_2_result;
+       count(DISTINCT spxxid),
+       trunc(xsrq)
+FROM 2_2_result
+GROUP BY ztid,
+         dwmc,
+         cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+         xslx,
+         trunc(xsrq);
 	   
-	   
-	   select cwdlid,
+3.1	   
+SELECT cwdlid,
        cwfl,
        rjfxid,
        rjflmc,
        sum(qmmy),
-       trunc(jzrq) from 3_1_result;
-	   
-	   select khid,
+       trunc(jzrq)
+FROM 3_1_result
+GROUP BY cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+         trunc(jzrq);
+
+3.2	   
+SELECT khid,
        dwmc,
        cwdlid,
        cwfl,
        rjfxid,
        rjflmc,
        sum(qmmy),
-       trunc(jzrq) from 3_2_result;
-	   
-	   select cwdlid,
+       trunc(jzrq)
+FROM 3_2_result
+GROUP BY khid,
+         dwmc,
+         cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+         trunc(jzrq);
+
+4.1	   
+SELECT cwdlid,
        cwfl,
        rjfxid,
        rjflmc,
        dgysid,
        gysmc,
        sum(sdmy),
-       trunc(jtrq) from 4_1_result;
-	   
-	   select cwdlid,
+       trunc(jtrq)
+FROM 4_1_result
+GROUP BY cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+         dgysid,
+         gysmc,
+         trunc(jtrq);
+
+4.2	   
+SELECT cwdlid,
        cwfl,
        rjfxid,
        rjflmc,
        khid,
        dwmc,
        sum(xtmy),
-       trunc(wlshrq) from 4_2_result;
+       trunc(wlshrq)
+FROM 4_2_result
+GROUP BY cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+         khid,
+         dwmc,
+         trunc(wlshrq);
 
 	   
 	   
