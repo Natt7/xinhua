@@ -8,7 +8,7 @@ fields (
 	 dgysid        type string,
 	 gysysid   	   type string,
 	 zt            type string,
-	 czsj          type datetime,
+	 czsj          type datetime format "%Y-%m-%d",
 	 czr           type string
 )
 record delimiter "lf" 
@@ -19,6 +19,11 @@ type rcd
 schema jt_j_gysys_schema;
 create table jt_j_gysys using jt_j_gysys_parser;
 create index jt_j_gysys_index on table jt_j_gysys(ygysid);
+create map jt_j_gysys_map on table jt_j_gysys
+key (ygysid)
+value (fals)
+type string
+where ygysid != dgysid and zt = '确认';
 
 create schema jt_j_gys_schema
 source type csv
@@ -62,7 +67,9 @@ fields (
 	cgjszq    			    type u64,
 	yyzz      			    type string,
 	zzjgdm    			    type string,
-	jsdwmc    			    type string
+	jsdwmc    			    type string,
+	vf_tru    		  		type expr data type string value iilmap("jt_w_cgsh_map",gysid),
+	vf_fals    		  		type expr data type string value iilmap("jt_j_gysys_map",gysid)
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -84,14 +91,14 @@ fields (
 	bjs              type u64,
 	gysid            type string,
 	shrid            type string,
-	shrq             type datetime,
+	shrq             type datetime format "%Y-%m-%d",
 	cgbmid           type string,
 	shwlid           type string,
 	shdwid           type string,
 	czyid            type string,
-	dhrq             type datetime,
-	czrq             type datetime,
-	zdrq             type datetime,
+	dhrq             type datetime format "%Y-%m-%d",
+	czrq             type datetime format "%Y-%m-%d",
+	zdrq             type datetime format "%Y-%m-%d",
 	ydzpz            type double,
 	ydzsl            type double,
 	ydzsy            type double,
@@ -114,7 +121,7 @@ fields (
 	pzh              type string,
 	mxhzsy           type double,
 	cysy             type double,
-	ydrq             type datetime,
+	ydrq             type datetime format "%Y-%m-%d",
 	jszq             type u64,
 	cgshdlxid        type string,
 	wxtxsdid         type string,
@@ -123,9 +130,9 @@ fields (
 	ecqr             type string,
 	bbid             type string,
 	lxtzh            type string,
-	ecqrrq           type datetime,
+	ecqrrq           type datetime format "%Y-%m-%d",
 	zhpc             type string,
-	blwcrq           type datetime,
+	blwcrq           type datetime format "%Y-%m-%d",
 	sfbhxs           type string,
 	pzztflag         type string,
 	jsztflag         type string,
@@ -135,14 +142,14 @@ fields (
 	ycshsl           type u64,
 	ycshmy           type double,
 	dzflag           type string,
-	senddate1        type datetime,
-	senddate2        type datetime,
+	senddate1        type datetime format "%Y-%m-%d",
+	senddate2        type datetime format "%Y-%m-%d",
 	sfdz             type string,
 	zdzflag          type string,
 	glzt             type string,
 	ykbz             type string,
-	cwhxrq           type datetime,
-	dzqrrq           type datetime,
+	cwhxrq           type datetime format "%Y-%m-%d",
+	dzqrrq           type datetime format "%Y-%m-%d",
 	dzqrr            type string
 )
 record delimiter "lf" 
@@ -153,6 +160,10 @@ type rcd
 schema jt_w_cgsh_schema;
 create table jt_w_cgsh using jt_w_cgsh_parser;
 create index jt_w_cgsh_index on table jt_w_cgsh(cgshid);
+create map jt_w_cgsh_map on table jt_w_cgsh
+key (gysid)
+value (tru)
+type string;
 
 create schema jt_c_gysys_schema
 source type csv
