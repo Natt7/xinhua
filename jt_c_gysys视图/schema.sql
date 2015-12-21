@@ -21,9 +21,9 @@ create table jt_j_gysys using jt_j_gysys_parser;
 create index jt_j_gysys_index on table jt_j_gysys(ygysid);
 create map jt_j_gysys_map on table jt_j_gysys
 key (ygysid)
-value (fals)
+value ("fals")
 type string
-where ygysid != dgysid and zt = '确认';
+where ygysid != dgysid and zt = '??';
 
 create schema jt_j_gys_schema
 source type csv
@@ -162,7 +162,7 @@ create table jt_w_cgsh using jt_w_cgsh_parser;
 create index jt_w_cgsh_index on table jt_w_cgsh(cgshid);
 create map jt_w_cgsh_map on table jt_w_cgsh
 key (gysid)
-value (tru)
+value ("tru")
 type string;
 
 create schema jt_c_gysys_schema

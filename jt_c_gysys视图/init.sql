@@ -56,7 +56,7 @@ end;
 run job 0_2_jt_c_gysys_view_map_job(threads:8);
 
 
-create job 0_2_jt_c_gysys_view_job22(t1)
+create job 0_2_jt_c_gysys_view_job(t1)
 begin
 
 dataset file jt_j_gysys_dataset
