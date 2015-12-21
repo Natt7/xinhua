@@ -20,6 +20,33 @@ GROUP BY cgshdh,
          rjflmc,
          trunc(dhrq);
 
+		 
+SELECT cgshdh,
+       dgysid,
+       gysmc,
+       cwdlid,
+       cwfl,
+       rjfxid,
+       rjflmc,
+       sum(sssl),
+       sum(ssmy),
+       sum(sssy),
+	   dhrq
+FROM 1_1_result
+GROUP BY cgshdh,
+         dgysid,
+         gysmc,
+         cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+		 dhrq;
+		 
+		 SELECT cgshdh,sum(sssl),
+       sum(ssmy),
+       sum(sssy)from 1_1_result group by cgshdh;
+		 
+		 
 1.2
 SELECT xsdh,
        khid,
