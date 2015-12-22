@@ -1,3 +1,7 @@
+jt_c_gysys视图
+
+select ygysid,dgysid,zt from jt_c_gysys where zt="确认"  limit 100 ;
+
 1.1
 SELECT cgshdh,
        dgysid,
@@ -41,6 +45,19 @@ GROUP BY cgshdh,
          rjfxid,
          rjflmc,
 		 dhrq;
+		 
+		 SELECT cgshdh,
+       dgysid,
+       gysmc,
+       cwdlid,
+       cwfl,
+       rjfxid,
+       rjflmc,
+       sssl,
+       ssmy,
+       sssy,
+	   dhrq
+FROM 1_1_result
 		 
 		 SELECT cgshdh,sum(sssl),
        sum(ssmy),
@@ -175,6 +192,23 @@ GROUP BY cwdlid,
          dgysid,
          gysmc,
          trunc(jtrq);
+		 
+SELECT cwdlid,
+       cwfl,
+       rjfxid,
+       rjflmc,
+       dgysid,
+       gysmc,
+       sum(sdmy),
+       jtrq
+FROM 4_1_result
+GROUP BY cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+         dgysid,
+         gysmc,
+         jtrq;
 
 4.2	   
 SELECT cwdlid,
@@ -193,6 +227,23 @@ GROUP BY cwdlid,
          khid,
          dwmc,
          trunc(wlshrq);
+
+SELECT cwdlid,
+       cwfl,
+       rjfxid,
+       rjflmc,
+       khid,
+       dwmc,
+       sum(xtmy),
+       wlshrq
+FROM 4_2_result
+GROUP BY cwdlid,
+         cwfl,
+         rjfxid,
+         rjflmc,
+         khid,
+         dwmc,
+         wlshrq;
 
 	   
 	   
