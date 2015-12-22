@@ -21,8 +21,8 @@ create table jt_j_gysys using jt_j_gysys_parser;
 create index jt_j_gysys_index on table jt_j_gysys(ygysid);
 create map jt_j_gysys_map on table jt_j_gysys
 key (ygysid)
-value ("fals")
-type string
+value (2)
+type u64
 where ygysid != dgysid and zt = '??';
 
 create schema jt_j_gys_schema
@@ -67,9 +67,7 @@ fields (
 	cgjszq    			    type u64,
 	yyzz      			    type string,
 	zzjgdm    			    type string,
-	jsdwmc    			    type string,
-	vf_tru    		  		type expr data type string value iilmap("jt_w_cgsh_map",gysid),
-	vf_fals    		  		type expr data type string value iilmap("jt_j_gysys_map",gysid)
+	jsdwmc    			    type string
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -162,15 +160,16 @@ create table jt_w_cgsh using jt_w_cgsh_parser;
 create index jt_w_cgsh_index on table jt_w_cgsh(cgshid);
 create map jt_w_cgsh_map on table jt_w_cgsh
 key (gysid)
-value ("tru")
-type string;
-
+value (1)
+type u64;
 create schema jt_c_gysys_schema
 source type csv
 fields (
 	ygysid     			    type string,
 	dgysid     			    type string,
-	zt     			    	type string
+	zt     			    	type string,
+	v1						type u64,
+	v2 						type u64
 )
 record delimiter "lf" 
 field delimiter "," 
