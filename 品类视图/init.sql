@@ -2,7 +2,7 @@ create job jt_j_fxfl_rjfl_job(jt_j_fxfl_rjfl)
 begin
 dataset file jt_j_fxfl_dataset
 (
-  filename:/home/natt/xinhuadata/JT_J_FXFL.csv,
+  filename:/home/natt/xinhuadata/jt_j_fxfl.csv,
   serverid:0,
   schema:jt_j_fxfl_schema,
   charset:utf-8,
