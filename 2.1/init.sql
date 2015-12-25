@@ -1,4 +1,4 @@
-create job 2_1_result_sum_job1(2_1_result)
+create job 2_1_result_sum_job(2_1_result)
 begin
 
 dataset file jt_j_fxfl_rjfl_dataset
@@ -292,4 +292,4 @@ dataproc statistics 2_1_result_sum1
   	inputs:"mx_sp_fxfl_cw_join"
 );
 end;
-run job 2_1_result_sum_job1(threads:8);
+run job 2_1_result_sum_job(threads:8);
