@@ -56,18 +56,38 @@ GROUP BY cgshdh,
 SELECT sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy FROM 1_1_result;
 采购总量 柱状图
 SELECT _month(dhrq),sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy FROM 1_1_result group by _month(dhrq);
-业务员 码洋 实洋 折扣率
+
+
+供应商业务员 码洋 实洋 折扣率
 SELECT sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy,operatorname,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where operatorname is not null GROUP BY operatorname;
-业务员 折扣率
+供应商业务员 折扣率 柱状图
 SELECT operatorname,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where operatorname is not null GROUP BY operatorname;
-业务员名称 供应商 码洋
+供应商业务员名称 供应商 码洋
 SELECT sum(ssmy) ssmy,operatorname,gysmc FROM 1_1_result where operatorname = "陆悦" GROUP BY operatorname,gysmc;
-业务员名称 供应商 码洋
+供应商业务员名称 供应商 折扣率
 SELECT operatorname,gysmc,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where operatorname = "陆悦" GROUP BY operatorname,gysmc;
 
-业务员名称 供应商 码洋
+
+财务大类 码洋 饼图
+SELECT cwdlid,cwfl,sum(ssmy) ssmy FROM 1_1_result group by cwdlid,cwfl;
+财务大类 码洋 实洋 数量 表格
+SELECT cwdlid,cwfl,sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy FROM 1_1_result group by cwdlid,cwfl;
+财务大类 折扣率 柱状图
+SELECT cwdlid,cwfl,sum(sssy)/sum(ssmy) zkl FROM 1_1_result group by cwdlid,cwfl;
+财务大类 分类 码洋 饼图
+SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(ssmy) ssmy FROM 1_1_result where cwfl = "动漫读物" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
+财务大类 分类 折扣率 柱状图
+SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where cwfl = "动漫读物" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
+
+品类业务员 码洋 饼图
+SELECT fxfloperatorname,rjfxid,rjflmc,sum(ssmy) ssmy FROM 1_1_result group by fxfloperatorname,rjfxid,rjflmc;
+品类业务员 码洋 实洋 数量 表格
+SELECT fxfloperatorname,rjfxid,rjflmc,sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy FROM 1_1_result group by fxfloperatorname,rjfxid,rjflmc;
+品类 折扣率 柱状图
+SELECT fxfloperatorname,rjfxid,rjflmc,sum(sssy)/sum(ssmy) zkl FROM 1_1_result group by fxfloperatorname,rjfxid,rjflmc;
+品类业务员名称 品类 码洋
 SELECT sum(ssmy) ssmy,rjfxid,rjflmc,fxfloperatorname FROM 1_1_result where operatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;
-业务员名称 品类 折扣率
+品类业务员名称 品类 折扣率
 SELECT fxfloperatorname,rjfxid,rjflmc,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where fxfloperatorname = "陆悦" GROUP BY rjfxid,rjflmc,fxfloperatorname;
 
 
@@ -146,7 +166,6 @@ SELECT dqid,dqmc,sum(sdmy) sdmy from 1_2_result GROUP BY dqid,dqmc;
 SELECT dqid,dqmc,sum(sdmy) sdmy,sum(sdsy) sdsy,sum(sdsl) sdsl from 1_2_result GROUP BY dqid,dqmc;
 地区 折扣率
 SELECT dqid,dqmc,sum(sdsy)/sum(sdmy) zkl from 1_2_result GROUP BY dqid,dqmc;
-
 地区 门店 码洋
 SELECT dqid,dqmc,khid,dwmc,sum(sdmy) sdmy from 1_2_result where dqmc = "长沙" GROUP BY dqid,dqmc,khid,dwmc;
 地区 门店 码洋
