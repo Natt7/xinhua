@@ -25,45 +25,52 @@ GROUP BY cgshdh,
          trunc(dhrq);
 
 		 
-SELECT cgshdh,
-       dgysid,
-       gysmc,
-       cwdlid,
-       cwfl,
-       rjfxid,
-       rjflmc,
-       sum(sssl),
-       sum(ssmy),
-       sum(sssy),
-	   dhrq
-FROM 1_1_result
-where rjflmc is not null
-GROUP BY cgshdh,
-         dgysid,
-         gysmc,
-         cwdlid,
-         cwfl,
-         rjfxid,
-         rjflmc,
-		 dhrq;
-		 
-		 SELECT cgshdh,
-       dgysid,
-       gysmc,
-       cwdlid,
-       cwfl,
-       rjfxid,
-       rjflmc,
-       sssl,
-       ssmy,
-       sssy,
-	   dhrq
-FROM 1_1_result
-		 
-		 SELECT cgshdh,sum(sssl),
-       sum(ssmy),
-       sum(sssy)from 1_1_result group by cgshdh;
-		 
+	SELECT cgshdh,
+		   dgysid,
+		   gysmc,
+		   cwdlid,
+		   cwfl,
+		   rjfxid,
+		   rjflmc,
+		   sum(sssl),
+		   sum(ssmy),
+		   sum(sssy),
+		   _month(dhrq),
+		   operatorname,
+		   fxfloperatorname
+	FROM 1_1_result
+	where fxfloperatorname is not null
+	GROUP BY cgshdh,
+			 dgysid,
+			 gysmc,
+			 cwdlid,
+			 cwfl,
+			 rjfxid,
+			 rjflmc,
+			 _month(dhrq),
+			 operatorname,
+			 fxfloperatorname limit 1000;
+
+	   
+采购总量 总表
+SELECT sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy FROM 1_1_result;
+采购总量 柱状图
+SELECT _month(dhrq),sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy FROM 1_1_result group by _month(dhrq);
+业务员 码洋 实洋 折扣率
+SELECT sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy,operatorname,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where operatorname is not null GROUP BY operatorname;
+业务员 折扣率
+SELECT operatorname,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where operatorname is not null GROUP BY operatorname;
+业务员名称 供应商 码洋
+SELECT sum(ssmy) ssmy,operatorname,gysmc FROM 1_1_result where operatorname = "陆悦" GROUP BY operatorname,gysmc;
+业务员名称 供应商 码洋
+SELECT operatorname,gysmc,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where operatorname = "陆悦" GROUP BY operatorname,gysmc;
+
+业务员名称 供应商 码洋
+SELECT sum(ssmy) ssmy,rjfxid,rjflmc,fxfloperatorname FROM 1_1_result where operatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;
+业务员名称 品类 折扣率
+SELECT fxfloperatorname,rjfxid,rjflmc,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where fxfloperatorname = "陆悦" GROUP BY rjfxid,rjflmc,fxfloperatorname;
+
+
 		 
 1.2
 SELECT xsdh,
@@ -81,7 +88,7 @@ SELECT xsdh,
        sum(sdsl),
        sum(sdmy),
        sum(sdsy),
-       trunc(mdjsrq)
+       mdjsrq
 FROM 1_2_result
 GROUP BY xsdh,
          khid,
@@ -95,7 +102,7 @@ GROUP BY xsdh,
          END,
          cwdlid,
          rjfxid,
-         trunc(mdjsrq)
+         mdjsrq
 ORDER BY khid,
          CASE ykbz
              WHEN 'true' THEN '越库'
@@ -108,35 +115,42 @@ ORDER BY khid,
          rjfxid,
          xsdh;
 		 
-		 
 SELECT xsdh,
        khid,
        dwmc,
-	       CASE ykbz
-             WHEN 'true' THEN '越库'
-             ELSE (CASE zpfh
-                       WHEN 'true' THEN '直配'
-                       ELSE '报订'
-                   END)
-         END yy,
-sum(sdsl),
+       cwdlid,
+       rjfxid,
+	   ykbz,
+	   zpfh,
+       sum(sdsl),
        sum(sdmy),
-       sum(sdsy)
-	   FROM 1_2_result
+       sum(sdsy),
+       mdjsrq,
+	   dqid,
+	   dqmc
+FROM 1_2_result
 GROUP BY xsdh,
          khid,
          dwmc,
-		 cwdlid,
+         cwdlid,
          rjfxid,
-	mdjsrq;
+		 ykbz,
+	     zpfh,
+         mdjsrq,
+		 dqid,
+		dqmc limit 1000;
 
-SELECT      
-sum(sdsl),
-       sum(sdmy),
-       sum(sdsy)
-	   FROM 1_2_result;
+地区 码洋
+SELECT dqid,dqmc,sum(sdmy) sdmy from 1_2_result GROUP BY dqid,dqmc;
+地区 码洋 实洋 数量
+SELECT dqid,dqmc,sum(sdmy) sdmy,sum(sdsy) sdsy,sum(sdsl) sdsl from 1_2_result GROUP BY dqid,dqmc;
+地区 折扣率
+SELECT dqid,dqmc,sum(sdsy)/sum(sdmy) zkl from 1_2_result GROUP BY dqid,dqmc;
 
-mdjsrq;
+地区 门店 码洋
+SELECT dqid,dqmc,khid,dwmc,sum(sdmy) sdmy from 1_2_result where dqmc = "长沙" GROUP BY dqid,dqmc,khid,dwmc;
+地区 门店 码洋
+SELECT dqid,dqmc,khid,dwmc,sum(sdsy)/sum(sdmy) zkl from 1_2_result where dqmc = "长沙" GROUP BY dqid,dqmc,khid,dwmc;
 
 2.1
 SELECT cwdlid,
