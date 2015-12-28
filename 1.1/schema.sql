@@ -349,7 +349,73 @@ create parser jt_j_gys_parser
 type rcd
 schema jt_j_gys_schema;
 create table jt_j_gys using jt_j_gys_parser;
-create index jt_j_gys_index on table jt_j_gys(gysid); 
+create index jt_j_gys_index on table jt_j_gys(gysid);
+
+create schema jt_g_bmhyrygx_schema
+source type csv
+fields (
+	bmhyrygxid     			type string,
+	bmid     			    type string,
+	gysid     			    type string,
+	ywyid     			    type string,
+	bz    			    	type string
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser jt_g_bmhyrygx_parser
+type rcd
+schema jt_g_bmhyrygx_schema;
+create table jt_g_bmhyrygx using jt_g_bmhyrygx_parser;
+create index jt_g_bmhyrygx_index on table jt_g_bmhyrygx(gysid);
+
+create schema jt_g_fxflywydz_schema
+source type csv
+fields (
+	fxflywydzid     		type string,
+	ztid     			    type string,
+	fxflid     			    type string,
+	ywyid     			    type string,
+	bz    			    	type string,
+	bwb						type string
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser jt_g_fxflywydz_parser
+type rcd
+schema jt_g_fxflywydz_schema;
+create table jt_g_fxflywydz using jt_g_fxflywydz_parser;
+create index jt_g_fxflywydz_index on table jt_g_fxflywydz(fxflywydzid);
+
+create schema base_operator_schema
+source type csv
+fields (
+	operatorid            type string,
+	operatorno            type string,
+	operatorname          type string,
+	fastcode              type string,
+	sex                   type string,
+	birthday              type string,
+	email                 type string,
+	contactaddress        type string,
+	telephone             type string,
+	mobiletelephone       type string,
+	departid              type string,
+	zt                    type string,
+	cjr                   type string,
+	tyr                   type string,
+	czrq                  type string,
+	qyrq                  type string
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser base_operator_parser
+type rcd
+schema base_operator_schema;
+create table base_operator using base_operator_parser;
+create index base_operator_index on table base_operator(operatorid);
 
 create schema 1_1_result_schema
 source type csv
@@ -364,7 +430,9 @@ fields (
 	sssl     				type double,
 	ssmy     				type double,
 	sssy      				type double,
-	dhrq      				type datetime format "%Y-%m-%d"
+	dhrq      				type datetime format "%Y-%m-%d",
+	operatorname			type string,
+	fxfloperatorname        type string
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -375,5 +443,6 @@ schema 1_1_result_schema;
 create table 1_1_result using 1_1_result_parser;
 create index 1_1_result_index on table 1_1_result(cgshdh); 
 create statistics model 1_1_result_sum on table 1_1_result
-group by ("cgshdh","dgysid","gysmc","cwdlid","cwfl","rjfxid","rjflmc","dhrq")
-measures (sum(sssl),sum(ssmy),sum(sssy));
+group by ("cgshdh","dgysid","gysmc","cwdlid","cwfl","rjfxid","rjflmc","dhrq","operatorname","fxfloperatorname")
+measures (sum(sssl),sum(ssmy),sum(sssy))
+time field dhrq unit "_month";

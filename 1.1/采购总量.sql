@@ -8,7 +8,13 @@ SELECT Sh.Cgshdh,
        Sum(Mx.Sssl),
        Sum(Mx.Ssmy),
        Sum(Mx.Sssy),
-       Trunc(Sh.Dhrq)
+       Trunc(Sh.Dhrq),
+       (select p.operatorname from base_operator p where p.operatorid=
+(select g.ywyid from JT_G_BMHYRYGX g where g.gysid=Ys.Dgysid)) operatornme,
+
+       (select p.operatorname from base_operator p where p.operatorid=
+(select g.ywyid from jt_g_fxflywydz g where g.Fxflid=Fxfl.Rjfxid)) fxfloperatorname
+
 FROM Jt_w_Cgshmx Mx
 LEFT JOIN Jt_w_Cgsh Sh ON Mx.Cgshid = Sh.Cgshid
 LEFT JOIN Jt_j_Spxx Sp ON Mx.Spxxid = Sp.Spxxid
