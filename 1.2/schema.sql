@@ -409,6 +409,31 @@ schema jt_j_cwdl_schema;
 create table jt_j_cwdl using jt_j_cwdl_parser;
 create index jt_j_cwdl_index on table jt_j_cwdl(cwdlid);
 
+create schema jt_j_dqbm_schema
+source type csv
+fields (
+	 dqid     			type string,
+	 dqbh      			type string,
+	 dqmc      			type string,
+	 dqjc      			type string,
+	 zjm      			type string,
+	 sfid      			type string,
+	 zt      			type string,
+	 cjr      			type string,
+	 tyr      			type string,
+	 czrq      			type string,
+	 sjdqid             type string,
+	 dqjs               type string
+)
+record delimiter "lf" 
+field delimiter "," 
+text qualifier "dqm";
+create parser jt_j_dqbm_parser
+type rcd
+schema jt_j_dqbm_schema;
+create table jt_j_dqbm using jt_j_dqbm_parser;
+create index jt_j_dqbm_index on table jt_j_dqbm(dqid);
+
 create schema 1_2_result_schema
 source type csv
 fields (
@@ -424,7 +449,9 @@ fields (
 	 sdsl      			type double,
 	 sdmy      			type double,
 	 sdsy      			type double,
-	 mdjsrq      		type datetime format "%Y-%m-%d"
+	 mdjsrq      		type datetime format "%Y-%m-%d",
+	 dqid				type string,
+	 dqmc				type string
 )
 record delimiter "lf" 
 field delimiter "," 
@@ -435,5 +462,5 @@ schema 1_2_result_schema;
 create table 1_2_result using 1_2_result_parser;
 create index 1_2_result_index on table 1_2_result(xsdh);
 create statistics model 1_2_result_sum on table 1_2_result
-group by ("xsdh","khid","dwmc","cwdlid","cwfl","rjfxid","rjflmc","mdjsrq")
+group by ("xsdh","khid","dwmc","cwdlid","cwfl","rjfxid","rjflmc","mdjsrq","dqid","dqmc")
 measures (sum(sdsl),sum(sdmy),sum(sdsy));
