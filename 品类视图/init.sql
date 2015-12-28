@@ -81,15 +81,89 @@ fields: [
 inputs: "bj_cj_join"
 );
 
+
+
+
+
+
+
+dataproc select jt_j_fxfl_select3
+(
+fields: [ 
+(fname:"fxflid"),
+(fname:"fxflmc"),
+(fname:"fxflfid")
+],
+inputs: "jt_j_fxfl_dataset",
+group_by:("fxflfid"),
+conditions:"fxfljs=3"
+);
+
+dataproc select jt_j_fxfl_select4
+(
+fields: [ 
+(fname:"fxflid",alias:"rjfxid"),
+(fname:"fxflmc",alias:"rjflmc"),
+(fname:"cwdlid")
+],
+inputs: "jt_j_fxfl_dataset",
+group_by:("rjfxid")
+);
+
+dataproc leftjoin dj_bj_join1
+(
+inputs: (left_input: jt_j_fxfl_select3, right_input: jt_j_fxfl_select4),
+join_keys: (("left_input.fxflfid","right_input.rjfxid"))
+);
+
+dataproc select dj_bj_join1_select
+(
+fields: [ 
+(fname:"fxflid"),
+(fname:"fxflmc"),
+(fname:"rjfxid"),
+(fname:"rjflmc"),
+(fname:"cwdlid")
+],
+inputs: "dj_bj_join1"
+);
+
+dataproc select jt_j_fxfl_select5
+(
+fields: [ 
+(fname:"fxflid"),
+(fname:"fxflmc"),
+(fname:"fxflid",alias:"rjfxid"),
+(fname:"fxflmc",alias:"rjflmc"),
+(fname:"cwdlid")
+],
+inputs: "jt_j_fxfl_dataset",
+conditions:"fxfljs=2"
+);
+
+dataproc union all_union
+(
+    inputs: (bj_cj_join_select, dj_bj_join1_select,jt_j_fxfl_select5),
+	fields:
+	(
+		(fname:"fxflid"),
+		(fname:"fxflmc"),
+		(fname:"rjfxid"),
+		(fname:"rjflmc"),
+		(fname:"cwdlid")
+	) 
+);
+
+
 dataproc index result_index
 (
-  inputs:"bj_cj_join_select",
+  inputs:"all_union",
   table:"jt_j_fxfl_rjfl",
   indexes:(jt_j_fxfl_rjfl_index)
  );
  dataproc doc result_doc
 (  
-  inputs:"bj_cj_join_select",
+  inputs:"all_union",
   table:"jt_j_fxfl_rjfl",
   format:"jt_j_fxfl_rjfl_parser",
   fields: ("fxflid","fxflmc","rjfxid","rjflmc","cwdlid")
