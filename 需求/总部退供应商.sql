@@ -34,15 +34,15 @@ SELECT _month(jtrq),sum(sdsl) sdsl,sum(sdmy) sdmy,sum(sdsy) sdsy FROM 4_1_result
 SELECT _month(jtrq),sum(sdsy)/sum(sdmy) zkl FROM 4_1_result group by _month(jtrq);
 
 
-总部退货供应商业务员 码洋 饼图
+采购供应商业务员 码洋 饼图
 SELECT operatorname,sum(sdmy) sdmy FROM 4_1_result group by operatorname;
-总部退货供应商业务员 码洋 实洋 数量 折扣率 表格
+采购供应商业务员 码洋 实洋 数量 折扣率 表格
 SELECT operatorname,sum(sdsl) sdsl,sum(sdmy) sdmy,sum(sdsy) sdsy,sum(sdsy)/sum(sdmy) zkl FROM 4_1_result GROUP BY operatorname;
-总部退货供应商业务员 折扣率 柱状图
+采购供应商业务员 折扣率 柱状图
 SELECT operatorname,sum(sdsy)/sum(sdmy) zkl FROM 4_1_result GROUP BY operatorname;
-总部退货供应商业务员名称 供应商 码洋 饼图
-SELECT operatorname,gysmc,sum(sdmy) sdmy FROM 4_1_result where operatorname = "伍军" GROUP BY operatorname,gysmc;
-总部退货供应商业务员名称 供应商 折扣率 柱状图
+采购供应商业务员名称 供应商 码洋 饼图
+SELECT operatorname,gysmc,sum(sdmy) sdmy FROM 4_1_result where operatorname = "陆悦" GROUP BY operatorname,gysmc;
+采购供应商业务员名称 供应商 折扣率 柱状图
 SELECT operatorname,gysmc,sum(sdsy)/sum(sdmy) zkl FROM 4_1_result where operatorname = "陆悦" GROUP BY operatorname,gysmc;
 
 
@@ -53,7 +53,7 @@ SELECT fxfloperatorname,sum(sdsl) sdsl,sum(sdmy) sdmy,sum(sdsy) sdsy,sum(sdsy)/s
 总部退货分类业务员 折扣率 柱状图
 SELECT fxfloperatorname,sum(sdsy)/sum(sdmy) zkl FROM 4_1_result GROUP BY fxfloperatorname;
 总部退货分类业务员名称 分类 码洋 饼图
-SELECT fxfloperatorname,rjfxid,rjflmc,sum(sdmy) sdmy FROM 4_1_result where fxfloperatorname = "冯琳" GROUP BY fxfloperatorname,rjfxid,rjflmc;
+SELECT fxfloperatorname,rjfxid,rjflmc,sum(sdmy) sdmy FROM 4_1_result where fxfloperatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;
 总部退货分类业务员名称 分类 折扣率 柱状图
 SELECT fxfloperatorname,rjfxid,rjflmc,sum(sdsy)/sum(sdmy) zkl FROM 4_1_result where fxfloperatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;
 
@@ -65,6 +65,6 @@ SELECT cwdlid,cwfl,sum(sdsl) sdsl,sum(sdmy) sdmy,sum(sdsy) sdsy FROM 4_1_result 
 总部退货财务大类 折扣率 柱状图
 SELECT cwdlid,cwfl,sum(sdsy)/sum(sdmy) zkl FROM 4_1_result group by cwdlid,cwfl;
 总部退货财务大类 分类 码洋 饼图
-SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(sdmy) sdmy FROM 4_1_result where cwfl = "音像制品" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
+SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(sdmy) sdmy FROM 4_1_result where cwfl = "动漫读物" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
 总部退货财务大类 分类 折扣率 柱状图
 SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(sdsy)/sum(sdmy) zkl FROM 4_1_result where cwfl = "动漫读物" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;

@@ -6,6 +6,8 @@ SELECT Mx.Ztid,
        Fxfl.Rjflmc,
        Mx.Xslx,
        Sum(Mx.Xsmy),
+   1    Sum(Mx.Xssy),
+   1    Sum(Mx.Xssl),
        Count(DISTINCT Mx.Spxxid),
        Trunc(Mx.Xsrq)
 FROM
@@ -36,3 +38,14 @@ GROUP BY Mx.Ztid,
          Fxfl.Rjflmc,
          Mx.Xslx,
          Trunc(Mx.Xsrq)
+
+门店销售地区 码洋 饼图
+SELECT dqid,dqmc,sum(sdmy) sdmy from table GROUP BY dqid,dqmc;
+门店销售地区 码洋 实洋 数量 表格
+SELECT dqid,dqmc,sum(sdmy) sdmy,sum(sdsy) sdsy,sum(sdsl) sdsl from table GROUP BY dqid,dqmc;
+门店销售地区 折扣率 柱状图
+SELECT dqid,dqmc,sum(sdsy)/sum(sdmy) zkl from table GROUP BY dqid,dqmc;
+门店销售地区 门店 码洋 饼图
+SELECT dqid,dqmc,khid,dwmc,sum(sdmy) sdmy from table where dqmc = "长沙" GROUP BY dqid,dqmc,khid,dwmc;
+门店销售地区 门店 码洋 柱状图
+SELECT dqid,dqmc,khid,dwmc,sum(sdsy)/sum(sdmy) zkl from table where dqmc = "长沙" GROUP BY dqid,dqmc,khid,dwmc;

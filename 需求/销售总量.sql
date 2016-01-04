@@ -68,7 +68,7 @@ SELECT dqmc,sum(xssl) xssl,sum(xsmy) xsmy,sum(xssy) xssy from 2_1_result GROUP B
 销售地区 折扣率 柱状图
 SELECT dqmc,sum(xssy)/sum(xsmy) zkl from 2_1_result GROUP BY dqmc;
 销售地区 门店 码洋 饼图
-SELECT dqmc,dwmc,sum(xsmy) xsmy from 2_1_result where dqmc = "娄底" GROUP BY dqmc,dwmc;
+SELECT dqmc,dwmc,sum(xsmy) xsmy from 2_1_result where dqmc = "长沙" GROUP BY dqmc,dwmc;
 销售地区 门店 折扣率 柱状图
 SELECT dqmc,dwmc,sum(xssy)/sum(xsmy) zkl from 2_1_result where dqmc = "长沙" GROUP BY dqmc,dwmc;
 

@@ -50,13 +50,25 @@ GROUP BY cgshdh,
 			 _month(dhrq),
 			 operatorname,
 			 fxfloperatorname limit 1000;
+			 
+	SELECT 
+		   cwfl,
+		   
+		   sum(sssl),
+		   sum(ssmy),
+		   sum(sssy)
+	FROM 1_1_result
+	where cwfl='文化教育'
+	GROUP BY 
+		   cwfl;
 
 	   
 采购总量 总表
 SELECT sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy FROM 1_1_result;
 采购总量 柱状图
 SELECT _month(dhrq),sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy FROM 1_1_result group by _month(dhrq);
-
+采购折扣率
+SELECT _month(dhrq),sum(sssy)/sum(ssmy) zkl FROM 1_1_result group by _month(dhrq);
 
 供应商业务员 码洋 实洋 折扣率
 SELECT sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy,operatorname,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where operatorname is not null GROUP BY operatorname;
@@ -139,9 +151,9 @@ SELECT xsdh,
        khid,
        dwmc,
        cwdlid,
+	   cwfl,
        rjfxid,
-	   ykbz,
-	   zpfh,
+	   rjflmc,
        sum(sdsl),
        sum(sdmy),
        sum(sdsy),
@@ -153,9 +165,9 @@ GROUP BY xsdh,
          khid,
          dwmc,
          cwdlid,
+		 cwfl,
          rjfxid,
-		 ykbz,
-	     zpfh,
+		 rjflmc,
          mdjsrq,
 		 dqid,
 		dqmc limit 1000;
@@ -200,14 +212,14 @@ GROUP BY cwdlid,
          xsrq;
 
 
-销售总量（按时间分类）折线图
-SELECT xsrq,sum(xsmy) FROM 2_1_result GROUP BY xsrq;
-
+销售总量 折线图
+SELECT sum(xsmy) xsmy FROM 2_1_result;
+销售量按时间分 表格
+SELECT _month(xsrq),sum(xsmy) xsmy FROM 2_1_result GROUP BY _month(xsrq);
 财务大类销售量，饼图
 SELECT cwfl,sum(xsmy) FROM 2_1_result GROUP BY cwfl;
-
 品类销售量，柱状图
-SELECT rjflmc,sum(xsmy) FROM 2_1_result GROUP BY rjflmc;
+SELECT rjflmc,rjfxid,sum(xsmy) FROM 2_1_result GROUP BY rjflmc,rjfxid;
 	   
 2.2
 SELECT ztid,
@@ -249,12 +261,10 @@ GROUP BY ztid,
          xslx,
          xsrq;
 		 
-门店总销量
-SELECT xsrq,sum(xsmy) FROM 2_2_result GROUP BY xsrq;
-
+门店总销量 时间分
+SELECT _month(xsrq),sum(xsmy) FROM 2_2_result GROUP BY _month(xsrq);
 门店品类销量
-SELECT rjflmc,sum(xsmy) FROM 2_2_result GROUP BY rjflmc;
-
+SELECT rjflmc,rjfxid,sum(xsmy) FROM 2_2_result GROUP BY rjflmc,rjfxid;
 门店批发零售销量
 SELECT xslx,sum(xsmy) FROM 2_2_result GROUP BY xslx;
 	   
@@ -285,14 +295,15 @@ GROUP BY cwdlid,
          rjflmc,
          jzrq;
 		 
+总部存货总量 表格
+SELECT sum(qmmy) qmmy FROM 3_1_result;
 总部存货总量（按时间分类）折线图
-SELECT sum(qmmy),jzrq FROM 3_1_result GROUP BY jzrq;
+SELECT sum(qmmy) qmmy,_month(jzrq) jzrq FROM 3_1_result GROUP BY _month(jzrq);
 
 总部品类存货量 饼图
-SELECT sum(qmmy),rjflmc FROM 3_1_result GROUP BY rjflmc;
-
+SELECT sum(qmmy) qmmy,rjflmc,rjfxid FROM 3_1_result GROUP BY rjflmc,rjfxid;
 总部财务大类存货量 柱状图
-SELECT sum(qmmy),cwfl FROM 3_1_result GROUP BY cwfl;
+SELECT sum(qmmy) qmmy,cwfl,cwdlid FROM 3_1_result GROUP BY cwfl,cwdlid;
 
 3.2	   
 SELECT khid,
@@ -319,7 +330,7 @@ SELECT khid,
        rjfxid,
        rjflmc,
        sum(qmmy),
-       jzrq
+       _month(jzrq)
 FROM 3_2_result
 GROUP BY khid,
          dwmc,
@@ -327,16 +338,19 @@ GROUP BY khid,
          cwfl,
          rjfxid,
          rjflmc,
-         jzrq;
+         _month(jzrq) limit 1000;
 		 
-门店采购总量（按时间分类）折线图
-SELECT sum(qmmy),jzrq FROM 3_2_result GROUP BY jzrq;
 
+门店存货总量 表格
+SELECT sum(qmmy) qmmy FROM 3_2_result;
+门店存货总量（按时间分类）折线图
+SELECT sum(qmmy) qmmy,_month(jzrq) jzrq FROM 3_2_result GROUP BY _month(jzrq);
 门店品类存货量 饼图
-SELECT sum(qmmy),rjflmc FROM 3_2_result GROUP BY rjflmc;
-
+SELECT sum(qmmy) qmmy,rjflmc,rjfxid FROM 3_2_result GROUP BY rjflmc,rjfxid;
 门店财务大类存货量 柱状图
-SELECT sum(qmmy),cwfl FROM 3_2_result GROUP BY cwfl;
+SELECT sum(qmmy) qmmy,cwfl,cwdlid FROM 3_2_result GROUP BY cwfl,cwdlid;
+
+
 4.1	   
 SELECT cwdlid,
        cwfl,

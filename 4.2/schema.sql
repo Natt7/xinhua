@@ -395,4 +395,5 @@ create table 4_2_result using 4_2_result_parser;
 create index 4_2_result_index on table 4_2_result(cwdlid);
 create statistics model 4_2_result_sum on table 4_2_result
 group by ("cwdlid","cwfl","rjfxid","rjflmc","khid","dwmc","wlshrq")
-measures (sum(xtmy));
+measures (sum(xtmy))
+time field wlshrq unit "_month";

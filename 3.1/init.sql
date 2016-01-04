@@ -3,7 +3,7 @@ begin
 
 dataset file jt_j_fxfl_rjfl_dataset
 (
-  filename:/home/natt/xinhuadata/jt_j_fxfl_rjfl.csv,
+  filename:/home/prod/data_bk/JT_J_FXFL_RJFL.csv,
   serverid:0,
   schema:jt_j_fxfl_rjfl_schema,
   charset:utf-8,
@@ -12,7 +12,7 @@ dataset file jt_j_fxfl_rjfl_dataset
 
 dataset file jt_c_bmspkfmx_dataset
 (
-  filename:/home/natt/xinhuadata/jt_c_bmspkfmx.csv,
+  filename:/home/prod/data_bk/JT_C_BMSPKFMX.csv,
   serverid:0,
   schema:jt_c_bmspkfmx_schema,
   charset:utf-8,
@@ -21,7 +21,7 @@ dataset file jt_c_bmspkfmx_dataset
 
 dataset file jt_c_khspmx_dataset
 (
-  filename:/home/natt/xinhuadata/jt_c_khspmx.csv,
+  filename:/home/prod/data_bk/JT_C_KHSPMX.csv,
   serverid:0,
   schema:jt_c_khspmx_schema,
   charset:utf-8,
@@ -30,7 +30,7 @@ dataset file jt_c_khspmx_dataset
 
 dataset file jt_j_spxx_dataset
 (
-  filename:/home/natt/xinhuadata/jt_j_spxx.csv,
+  filename:/home/prod/data_bk/JT_J_SPXX.csv,
   serverid:0,
   schema:jt_j_spxx_schema,
   charset:utf-8,
@@ -39,7 +39,7 @@ dataset file jt_j_spxx_dataset
 
 dataset file jt_j_cwdl_dataset
 (
-  filename:/home/natt/xinhuadata/jt_j_cwdl.csv,
+  filename:/home/prod/data_bk/JT_J_CWDL.csv,
   serverid:0,
   schema:jt_j_cwdl_schema,
   charset:utf-8,

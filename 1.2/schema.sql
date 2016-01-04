@@ -22,7 +22,7 @@ fields (
 	 fhsl     	  		type double,
 	 fhsy     	  		type double,
 	 fhmy     	  		type double,
-	 sdsl     	  		type double,
+	 sdsl     	  		type u64,
 	 sdsy     	  		type double,
 	 sdmy     	  		type double,
 	 zzsl     	  		type double,
@@ -445,8 +445,8 @@ fields (
 	 cwdlid      		type string,
 	 cwfl      			type string,
 	 rjfxid      		type string,
-	 rjflmc      		type datetime format "%Y-%m-%d",
-	 sdsl      			type double,
+	 rjflmc      		type string,
+	 sdsl      			type u64,
 	 sdmy      			type double,
 	 sdsy      			type double,
 	 mdjsrq      		type datetime format "%Y-%m-%d",
@@ -463,4 +463,5 @@ create table 1_2_result using 1_2_result_parser;
 create index 1_2_result_index on table 1_2_result(xsdh);
 create statistics model 1_2_result_sum on table 1_2_result
 group by ("xsdh","khid","dwmc","cwdlid","cwfl","rjfxid","rjflmc","mdjsrq","dqid","dqmc")
-measures (sum(sdsl),sum(sdmy),sum(sdsy));
+measures (sum(sdsl),sum(sdmy),sum(sdsy))
+time field mdjsrq unit "_month";

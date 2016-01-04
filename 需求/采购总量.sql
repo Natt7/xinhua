@@ -45,7 +45,7 @@ SELECT operatorname,sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy,sum(sssy)/sum(s
 采购供应商业务员 折扣率 柱状图
 SELECT operatorname,gysmc,sum(sssy)/sum(ssmy) zkl FROM 1_1_result GROUP BY operatorname,gysmc;
 采购供应商业务员名称 供应商 码洋 饼图
-SELECT operatorname,gysmc,sum(ssmy) ssmy FROM 1_1_result GROUP BY operatorname,gysmc;
+SELECT operatorname,gysmc,sum(ssmy) ssmy FROM 1_1_result where operatorname = "陆悦" GROUP BY operatorname,gysmc;
 采购供应商业务员名称 供应商 折扣率 柱状图
 SELECT operatorname,gysmc,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where operatorname = "陆悦" GROUP BY operatorname,gysmc;
 
@@ -69,6 +69,6 @@ SELECT fxfloperatorname,sum(sssl) sssl,sum(ssmy) ssmy,sum(sssy) sssy FROM 1_1_re
 品类 折扣率 柱状图
 SELECT fxfloperatorname,sum(sssy)/sum(ssmy) zkl FROM 1_1_result group by fxfloperatorname;
 品类业务员名称 品类 码洋
-SELECT fxfloperatorname,rjfxid,rjflmc,sum(ssmy) ssmy FROM 1_1_result where fxfloperatorname = "冯琳" GROUP BY fxfloperatorname,rjfxid,rjflmc;
+SELECT fxfloperatorname,rjfxid,rjflmc,sum(ssmy) ssmy FROM 1_1_result where fxfloperatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;
 品类业务员名称 品类 折扣率
 SELECT fxfloperatorname,rjfxid,rjflmc,sum(sssy)/sum(ssmy) zkl FROM 1_1_result where fxfloperatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;

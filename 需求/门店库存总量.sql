@@ -43,7 +43,7 @@ SELECT fxfloperatorname,sum(qmkc) qmkc,sum(qmmy) qmmy,sum(qmsy) qmsy,sum(qmsy)/s
 门店存货分类业务员 折扣率 柱状图
 SELECT fxfloperatorname,sum(qmsy)/sum(qmmy) zkl FROM 3_2_result GROUP BY fxfloperatorname;
 门店存货分类业务员名称 分类 码洋 饼图
-SELECT fxfloperatorname,rjfxid,rjflmc,sum(qmmy) qmmy FROM 3_2_result where fxfloperatorname = "冯琳" GROUP BY fxfloperatorname,rjfxid,rjflmc;
+SELECT fxfloperatorname,rjfxid,rjflmc,sum(qmmy) qmmy FROM 3_2_result where fxfloperatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;
 门店存货分类业务员名称 分类 折扣率 柱状图
 SELECT fxfloperatorname,rjfxid,rjflmc,sum(qmsy)/sum(qmmy) zkl FROM 3_2_result where fxfloperatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;
 
@@ -55,7 +55,7 @@ SELECT cwdlid,cwfl,sum(qmkc) qmkc,sum(qmmy) qmmy,sum(qmsy) qmsy FROM 3_2_result 
 门店存货财务大类 折扣率 柱状图
 SELECT cwdlid,cwfl,sum(qmsy)/sum(qmmy) zkl FROM 3_2_result group by cwdlid,cwfl;
 门店存货财务大类 分类 码洋 饼图
-SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(qmmy) qmmy FROM 3_2_result where cwfl = "少儿图书" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
+SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(qmmy) qmmy FROM 3_2_result where cwfl = "动漫读物" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
 门店存货财务大类 分类 折扣率 柱状图
 SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(qmsy)/sum(qmmy) zkl FROM 3_2_result where cwfl = "动漫读物" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
 

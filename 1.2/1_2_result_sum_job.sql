@@ -3,65 +3,65 @@ begin
 
 dataset file jt_j_fxfl_rjfl_dataset
 (
-  filename:/home/prod/xinhuadata/jt_j_fxfl_rjfl.csv,
+  filename:/home/natt/xinhuadata/jt_j_fxfl_rjfl.csv,
   serverid:0,
   schema:jt_j_fxfl_rjfl_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_x_xsdmx_dataset
 (
-  filename:/home/prod/xinhuadata/jt_x_xsdmx.csv,
+  filename:/home/natt/xinhuadata/jt_x_xsdmx.csv,
   serverid:0,
   schema:jt_x_xsdmx_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_j_cwdl_dataset
 (
-  filename:/home/prod/xinhuadata/jt_j_cwdl.csv,
+  filename:/home/natt/xinhuadata/jt_j_cwdl.csv,
   serverid:0,
   schema:jt_j_cwdl_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_j_spxx_dataset
 (
-  filename:/home/prod/xinhuadata/jt_j_spxx.csv,
+  filename:/home/natt/xinhuadata/jt_j_spxx.csv,
   serverid:0,
   schema:jt_j_spxx_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_x_xsd_dataset
 (
-  filename:/home/prod/xinhuadata/jt_x_xsd.csv,
+  filename:/home/natt/xinhuadata/jt_x_xsd.csv,
   serverid:0,
   schema:jt_x_xsd_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_j_dwxx_dataset
 (
-  filename:/home/prod/xinhuadata/jt_j_dwxx.csv,
+  filename:/home/natt/xinhuadata/jt_j_dwxx.csv,
   serverid:0,
   schema:jt_j_dwxx_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_j_dqbm_dataset
 (
-  filename:/home/prod/xinhuadata/jt_j_dqbm.csv,
+  filename:/home/natt/xinhuadata/jt_j_dqbm.csv,
   serverid:0,
   schema:jt_j_dqbm_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataproc select jt_x_xsd_select
@@ -274,51 +274,26 @@ inputs: (left_input: xs_xd_dw_sp_fxfl_cw_join_select, right_input: jt_j_dqbm_sel
 join_keys: (("left_input.dqid","right_input.dqid1"))
 );
 
-dataproc select xs_xd_dw_sp_fxfl_cw_b_join_select
-(
-fields: ( 
-(fname:"xsdh"),
-(fname:"khid"),
-(fname:"dwmc"),
-(fname:"dqid"),
-(fname:"ykbz"),
-(fname:"zpfh"),
-(fname:"cwdlid"),
-(fname:"cwfl"),
-(fname:"rjfxid"),
-(fname:"rjflmc"),
-(fname:"sdsl"),
-(fname:"sdmy"),
-(fname:"sdsy"),
-(fname:"mdjsrq"),
-(fname:"dqmc")
-),
-inputs: "xs_xd_dw_sp_fxfl_cw_b_join"
-);
-
-
-
 
 
 
 dataproc index 1_2_result_index1
 (
-  inputs:"xs_xd_dw_sp_fxfl_cw_b_join_select",
+  inputs:"xs_xd_dw_sp_fxfl_cw_b_join",
   table:"1_2_result",
   indexes:(1_2_result_index)
  );
  dataproc doc 1_2_result_doc
 (  
-  inputs:"xs_xd_dw_sp_fxfl_cw_b_join_select",
+  inputs:"xs_xd_dw_sp_fxfl_cw_b_join",
   table:"1_2_result",
   format:"1_2_result_parser",
   fields:("xsdh","khid","dwmc","ykbz","zpfh","cwdlid","cwfl","rjfxid","rjflmc","sdsl","sdmy","sdsy","mdjsrq","dqid","dqmc")
 ); 
 dataproc statistics 1_2_result_sum1
 (
-	stat_model:"1_2_result_sum",
   	table:"1_2_result",
-  	inputs:"xs_xd_dw_sp_fxfl_cw_b_join_select"
+  	inputs:"xs_xd_dw_sp_fxfl_cw_b_join"
 );
 end;
 run job 1_2_result_sum_job(threads:8);

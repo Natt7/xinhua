@@ -2,97 +2,97 @@ create job 1_1_result_sum_job(1_1_result)
 begin
 dataset file jt_j_gys_dataset
 (
-  filename:/home/prod/xinhuadata/jt_j_gys.csv,
+  filename:/home/natt/Data_test/jt_j_gys.csv,
   serverid:0,
   schema:jt_j_gys_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataset file jt_c_gysys_dataset
 (
-  filename:/home/prod/xinhuadata/jt_c_gysys.csv,
+  filename:/home/natt/Data_test/jt_c_gysys.csv,
   serverid:0,
   schema:jt_c_gysys_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataset file jt_j_fxfl_rjfl_dataset
 (
-  filename:/home/prod/xinhuadata/jt_j_fxfl_rjfl.csv,
+  filename:/home/natt/Data_test/jt_j_fxfl_rjfl.csv,
   serverid:0,
   schema:jt_j_fxfl_rjfl_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataset file jt_w_cgsh_dataset
 (
-  filename:/home/prod/xinhuadata/jt_w_cgsh.csv,
+  filename:/home/natt/Data_test/jt_w_cgsh.csv,
   serverid:0,
   schema:jt_w_cgsh_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataset file jt_j_cwdl_dataset
 (
-  filename:/home/prod/xinhuadata/jt_j_cwdl.csv,
+  filename:/home/natt/Data_test/jt_j_cwdl.csv,
   serverid:0,
   schema:jt_j_cwdl_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataset file jt_j_spxx_dataset
 (
-  filename:/home/prod/xinhuadata/jt_j_spxx.csv,
+  filename:/home/natt/Data_test/jt_j_spxx.csv,
   serverid:0,
   schema:jt_j_spxx_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataset file jt_w_cgshmx_dataset
 (
-  filename:/home/prod/xinhuadata/jt_w_cgshmx.csv,
+  filename:/home/natt/Data_test/jt_w_cgshmx.csv,
   serverid:0,
   schema:jt_w_cgshmx_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataset file jt_g_bmhyrygx_dataset
 (
-  filename:/home/prod/xinhuadata/jt_g_bmhyrygx.csv,
+  filename:/home/natt/Data_test/jt_g_bmhyrygx.csv,
   serverid:0,
   schema:jt_g_bmhyrygx_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataset file jt_g_fxflywydz_dataset
 (
-  filename:/home/prod/xinhuadata/jt_g_fxflywydz.csv,
+  filename:/home/natt/Data_test/jt_g_fxflywydz.csv,
   serverid:0,
   schema:jt_g_fxflywydz_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataset file base_operator_dataset
 (
-  filename:/home/prod/xinhuadata/base_operator.csv,
+  filename:/home/natt/Data_test/base_operator.csv,
   serverid:0,
   schema:base_operator_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:200)
 );
 
 dataproc select jt_w_cgsh_select
 (
-fields: ( 
+fields: (
 (fname:"cgshid"),
 (fname:"cgshdh"),
 (fname:"dhrq"),
@@ -104,7 +104,7 @@ order_by:("gysid")
 
 dataproc select jt_c_gysys_select
 (
-fields: ( 
+fields: (
 (fname:"ygysid"),
 (fname:"dgysid")
 ),
@@ -120,7 +120,7 @@ join_keys: (("left_input.gysid","right_input.ygysid"))
 
 dataproc select sh_ys_join_select
 (
-fields: ( 
+fields: (
 (fname:"cgshid"),
 (fname:"cgshdh"),
 (fname:"dhrq"),
@@ -133,7 +133,7 @@ order_by:("dgysid")
 
 dataproc select jt_j_gys_select
 (
-fields: ( 
+fields: (
 (fname:"gysid",alias:"gysid1",type:"string"),
 (fname:"gysmc")
 ),
@@ -149,7 +149,7 @@ join_keys: (("left_input.dgysid","right_input.gysid1"))
 
 dataproc select sh_ys_gys_join_select
 (
-fields: ( 
+fields: (
 (fname:"cgshid",alias:"cgshid1",type:"string"),
 (fname:"cgshdh"),
 (fname:"dhrq"),
@@ -165,7 +165,7 @@ order_by:("cgshid1")
 
 dataproc select jt_j_spxx_select
 (
-fields: ( 
+fields: (
 (fname:"spxxid"),
 (fname:"fxflid")
 ),
@@ -175,7 +175,7 @@ order_by:("fxflid")
 
 dataproc select jt_j_fxfl_rjfl_select
 (
-fields: ( 
+fields: (
 (fname:"fxflid",alias:"fxflid1",type:"string"),
 (fname:"cwdlid"),
 (fname:"rjfxid"),
@@ -193,7 +193,7 @@ join_keys: (("left_input.fxflid","right_input.fxflid1"))
 
 dataproc select sp_fxfl_join_select
 (
-fields: ( 
+fields: (
 (fname:"spxxid"),
 (fname:"fxflid"),
 (fname:"cwdlid"),
@@ -206,7 +206,7 @@ order_by:("cwdlid")
 
 dataproc select jt_j_cwdl_select
 (
-fields: ( 
+fields: (
 (fname:"cwdlid",alias:"cwdlid1",type:"string"),
 (fname:"cwfl")
 ),
@@ -222,7 +222,7 @@ join_keys: (("left_input.cwdlid","right_input.cwdlid1"))
 
 dataproc select sp_fxfl_cw_join_select
 (
-fields: ( 
+fields: (
 (fname:"spxxid",alias:"spxxid1",type:"string"),
 (fname:"fxflid"),
 (fname:"cwdlid"),
@@ -239,7 +239,7 @@ order_by:("spxxid1")
 
 dataproc select jt_w_cgshmx_select
 (
-fields: ( 
+fields: (
 (fname:"cgshid"),
 (fname:"spxxid"),
 (fname:"sssl"),
@@ -258,7 +258,7 @@ join_keys: (("left_input.cgshid","right_input.cgshid1"))
 
 dataproc select mx_sh_ys_gys_join_select
 (
-fields: ( 
+fields: (
 (fname:"cgshid"),
 (fname:"spxxid"),
 (fname:"sssl"),
@@ -282,7 +282,7 @@ join_keys: (("left_input.spxxid","right_input.spxxid1"))
 
 dataproc select mx_sh_ys_gys_sp_fxfl_cw_join_select
 (
-fields: ( 
+fields: (
 (fname:"cgshdh"),
 (fname:"dgysid"),
 (fname:"gysmc"),
@@ -301,7 +301,7 @@ order_by:("dgysid")
 
 dataproc select jt_g_bmhyrygx_select
 (
-fields: ( 
+fields: (
 (fname:"gysid"),
 (fname:"ywyid")
 ),
@@ -317,7 +317,7 @@ join_keys: (("left_input.dgysid","right_input.gysid"))
 
 dataproc select mx_sh_ys_gys_sp_fxfl_cw_g_join_select
 (
-fields: ( 
+fields: (
 (fname:"cgshdh"),
 (fname:"dgysid"),
 (fname:"gysmc"),
@@ -337,7 +337,7 @@ order_by:("ywyid")
 
 dataproc select base_operator_select
 (
-fields: ( 
+fields: (
 (fname:"operatorid"),
 (fname:"operatorname")
 ),
@@ -353,7 +353,7 @@ join_keys: (("left_input.ywyid","right_input.operatorid"))
 
 dataproc select mx_sh_ys_gys_sp_fxfl_cw_g_p_join_select
 (
-fields: ( 
+fields: (
 (fname:"cgshdh"),
 (fname:"dgysid"),
 (fname:"gysmc"),
@@ -374,7 +374,7 @@ order_by:("rjfxid")
 
 dataproc select jt_g_fxflywydz_select
 (
-fields: ( 
+fields: (
 (fname:"fxflid"),
 (fname:"ywyid",alias:"ywyid1",type:string)
 ),
@@ -390,7 +390,7 @@ join_keys: (("left_input.rjfxid","right_input.fxflid"))
 
 dataproc select mx_sh_ys_gys_sp_fxfl_cw_g_p_g_join_select
 (
-fields: ( 
+fields: (
 (fname:"cgshdh"),
 (fname:"dgysid"),
 (fname:"gysmc"),
@@ -412,7 +412,7 @@ order_by:("ywyid1")
 
 dataproc select base_operator_select1
 (
-fields: ( 
+fields: (
 (fname:"operatorid",alias:"operatorid1",type:string),
 (fname:"operatorname",alias:"fxfloperatorname",type:string)
 ),
@@ -428,7 +428,7 @@ join_keys: (("left_input.ywyid1","right_input.operatorid1"))
 
 dataproc select mx_sh_ys_gys_sp_fxfl_cw_g_p_g_p_join_select
 (
-fields: ( 
+fields: (
 (fname:"cgshdh"),
 (fname:"dgysid"),
 (fname:"gysmc"),
@@ -457,15 +457,14 @@ dataproc index 1_1_result_index1
   indexes:(1_1_result_index)
  );
  dataproc doc 1_1_result_doc
-(  
+(
   inputs:"mx_sh_ys_gys_sp_fxfl_cw_g_p_g_p_join_select",
   table:"1_1_result",
   format:"1_1_result_parser",
   fields:("cgshdh","dgysid","gysmc","cwdlid","cwfl","rjfxid","rjflmc","sssl","ssmy","sssy","dhrq","operatorname","fxfloperatorname")
-); 
+);
 dataproc statistics 1_1_result_sum1
 (
-	stat_model:"1_1_result_sum",
   	table:"1_1_result",
   	inputs:"mx_sh_ys_gys_sp_fxfl_cw_g_p_g_p_join_select"
 );

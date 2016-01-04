@@ -2,7 +2,7 @@ create job 0_1_jt_j_gys_view_job(jt_j_gys)
 begin
 dataset file jt_j_dwxx_dataset
 (
-  filename:/home/natt/xinhuadata/JT_J_DWXX.csv,
+  filename:/home/natt/xinhuadata/jt_j_dwxx.csv,
   serverid:0,
   schema:jt_j_dwxx_schema,
   charset:utf-8,

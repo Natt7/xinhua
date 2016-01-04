@@ -7,7 +7,7 @@ dataset file jt_j_gys_dataset
   serverid:0,
   schema:jt_j_gys_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_c_gysys_dataset
@@ -16,7 +16,7 @@ dataset file jt_c_gysys_dataset
   serverid:0,
   schema:jt_c_gysys_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_j_fxfl_rjfl_dataset
@@ -25,7 +25,7 @@ dataset file jt_j_fxfl_rjfl_dataset
   serverid:0,
   schema:jt_j_fxfl_rjfl_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_g_jtdmx_dataset
@@ -34,7 +34,7 @@ dataset file jt_g_jtdmx_dataset
   serverid:0,
   schema:jt_g_jtdmx_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_g_jtd_dataset
@@ -43,7 +43,7 @@ dataset file jt_g_jtd_dataset
   serverid:0,
   schema:jt_g_jtd_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_j_spxx_dataset
@@ -52,7 +52,7 @@ dataset file jt_j_spxx_dataset
   serverid:0,
   schema:jt_j_spxx_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
 );
 
 dataset file jt_j_cwdl_dataset
@@ -61,7 +61,34 @@ dataset file jt_j_cwdl_dataset
   serverid:0,
   schema:jt_j_cwdl_schema,
   charset:utf-8,
-  splitter:(block_size:1000)
+  splitter:(block_size:400)
+);
+
+dataset file jt_g_bmhyrygx_dataset
+(
+  filename:/home/natt/xinhuadata/jt_g_bmhyrygx.csv,
+  serverid:0,
+  schema:jt_g_bmhyrygx_schema,
+  charset:utf-8,
+  splitter:(block_size:200)
+);
+
+dataset file jt_g_fxflywydz_dataset
+(
+  filename:/home/natt/xinhuadata/jt_g_fxflywydz.csv,
+  serverid:0,
+  schema:jt_g_fxflywydz_schema,
+  charset:utf-8,
+  splitter:(block_size:200)
+);
+
+dataset file base_operator_dataset
+(
+  filename:/home/natt/xinhuadata/base_operator.csv,
+  serverid:0,
+  schema:base_operator_schema,
+  charset:utf-8,
+  splitter:(block_size:200)
 );
 
 dataproc select jt_g_jtd_select
@@ -211,7 +238,9 @@ dataproc select jt_g_jtdmx_select
 fields: [ 
 (fname:"jtdid"),
 (fname:"spxxid"),
-(fname:"sdmy")
+(fname:"sdmy"),
+(fname:"sdsy"),
+(fname:"sdsl")
 ],
 inputs: "jt_g_jtdmx_dataset",
 order_by:("jtdid")
@@ -229,6 +258,8 @@ fields: (
 (fname:"jtdid"),
 (fname:"spxxid"),
 (fname:"sdmy"),
+(fname:"sdsy"),
+(fname:"sdsl"),
 (fname:"gysid"),
 (fname:"jtrq"),
 (fname:"dgysid"),
@@ -253,30 +284,156 @@ fields: (
 (fname:"rjflmc"),
 (fname:"dgysid"),
 (fname:"gysmc"),
-(fname:"sdmy"),
+(fname:"nvl (sdmy, 0)",alias:"sdmy",type:"double"),
+(fname:"nvl (sdsy, 0)",alias:"sdsy",type:"double"),
+(fname:"nvl (sdsl, 0)",alias:"sdsl",type:"double"),
 (fname:"jtrq")
 ),
-inputs: "mx_jt_ys_gys_sp_fxfl_cw_join"
+inputs: "mx_jt_ys_gys_sp_fxfl_cw_join",
+order_by:("dgysid")
+);
+
+dataproc select jt_g_bmhyrygx_select
+(
+fields: (
+(fname:"gysid"),
+(fname:"ywyid")
+),
+inputs: "jt_g_bmhyrygx_dataset",
+order_by:("gysid")
+);
+
+dataproc leftjoin mx_sh_ys_gys_sp_fxfl_cw_g_join
+(
+inputs: (left_input: mx_jt_ys_gys_sp_fxfl_cw_join_select, right_input: jt_g_bmhyrygx_select),
+join_keys: (("left_input.dgysid","right_input.gysid"))
+);
+
+dataproc select mx_sh_ys_gys_sp_fxfl_cw_g_join_select
+(
+fields: (
+(fname:"cwdlid"),
+(fname:"cwfl"),
+(fname:"rjfxid"),
+(fname:"rjflmc"),
+(fname:"dgysid"),
+(fname:"gysmc"),
+(fname:"sdmy"),
+(fname:"sdsy"),
+(fname:"sdsl"),
+(fname:"jtrq"),
+(fname:"ywyid")
+),
+inputs: "mx_sh_ys_gys_sp_fxfl_cw_g_join",
+order_by:("ywyid")
+);
+
+dataproc select base_operator_select
+(
+fields: (
+(fname:"operatorid"),
+(fname:"operatorname")
+),
+inputs: "base_operator_dataset",
+order_by:("operatorid")
+);
+
+dataproc leftjoin mx_sh_ys_gys_sp_fxfl_cw_g_p_join
+(
+inputs: (left_input: mx_sh_ys_gys_sp_fxfl_cw_g_join_select, right_input: base_operator_select),
+join_keys: (("left_input.ywyid","right_input.operatorid"))
+);
+
+dataproc select mx_sh_ys_gys_sp_fxfl_cw_g_p_join_select
+(
+fields: (
+(fname:"cwdlid"),
+(fname:"cwfl"),
+(fname:"rjfxid"),
+(fname:"rjflmc"),
+(fname:"dgysid"),
+(fname:"gysmc"),
+(fname:"sdmy"),
+(fname:"sdsy"),
+(fname:"sdsl"),
+(fname:"jtrq"),
+(fname:"ywyid"),
+(fname:"operatorname")
+),
+inputs: "mx_sh_ys_gys_sp_fxfl_cw_g_p_join",
+order_by:("rjfxid")
+);
+
+dataproc select jt_g_fxflywydz_select
+(
+fields: (
+(fname:"fxflid"),
+(fname:"ywyid",alias:"ywyid1",type:string)
+),
+inputs: "jt_g_fxflywydz_dataset",
+order_by:("fxflid")
+);
+
+dataproc leftjoin mx_sh_ys_gys_sp_fxfl_cw_g_p_g_join
+(
+inputs: (left_input: mx_sh_ys_gys_sp_fxfl_cw_g_p_join_select, right_input: jt_g_fxflywydz_select),
+join_keys: (("left_input.rjfxid","right_input.fxflid"))
+);
+
+dataproc select mx_sh_ys_gys_sp_fxfl_cw_g_p_g_join_select
+(
+fields: (
+(fname:"cwdlid"),
+(fname:"cwfl"),
+(fname:"rjfxid"),
+(fname:"rjflmc"),
+(fname:"dgysid"),
+(fname:"gysmc"),
+(fname:"sdmy"),
+(fname:"sdsy"),
+(fname:"sdsl"),
+(fname:"jtrq"),
+(fname:"ywyid"),
+(fname:"operatorname"),
+(fname:"ywyid1")
+),
+inputs: "mx_sh_ys_gys_sp_fxfl_cw_g_p_g_join",
+order_by:("ywyid1")
+);
+
+dataproc select base_operator_select1
+(
+fields: (
+(fname:"operatorid",alias:"operatorid1",type:string),
+(fname:"operatorname",alias:"fxfloperatorname",type:string)
+),
+inputs: "base_operator_dataset",
+order_by:("operatorid1")
+);
+
+dataproc leftjoin mx_sh_ys_gys_sp_fxfl_cw_g_p_g_p_join
+(
+inputs: (left_input: mx_sh_ys_gys_sp_fxfl_cw_g_p_g_join_select, right_input: base_operator_select1),
+join_keys: (("left_input.ywyid1","right_input.operatorid1"))
 );
 
 dataproc index 4_1_result_index1
 (
-  inputs:"mx_jt_ys_gys_sp_fxfl_cw_join_select",
+  inputs:"mx_sh_ys_gys_sp_fxfl_cw_g_p_g_p_join",
   table:"4_1_result",
   indexes:(4_1_result_index)
  );
  dataproc doc 4_1_result_doc
 (  
-  inputs:"mx_jt_ys_gys_sp_fxfl_cw_join_select",
+  inputs:"mx_sh_ys_gys_sp_fxfl_cw_g_p_g_p_join",
   table:"4_1_result",
   format:"4_1_result_parser",
-  fields:("cwdlid","cwfl","rjfxid","rjflmc","dgysid","gysmc","sdmy","jtrq")
+  fields:("cwdlid","cwfl","rjfxid","rjflmc","dgysid","gysmc","operatorname","fxfloperatorname","sdmy","sdsy","sdsl","jtrq")
 ); 
 dataproc statistics 4_1_result_sum1
 (
-	stat_model:"4_1_result_sum",
   	table:"4_1_result",
-  	inputs:"mx_jt_ys_gys_sp_fxfl_cw_join_select"
+  	inputs:"mx_sh_ys_gys_sp_fxfl_cw_g_p_g_p_join"
 );
 end;
 run job 4_1_result_sum_job(threads:8);

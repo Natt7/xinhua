@@ -440,4 +440,5 @@ create table 3_2_result using 3_2_result_parser;
 create index 3_2_result_index on table 3_2_result(cwdlid);
 create statistics model 3_2_result_sum on table 3_2_result
 group by ("khid","dwmc","cwdlid","cwfl","rjfxid","rjflmc","jzrq")
-measures (sum(qmmy));
+measures (sum(qmmy))
+time field jzrq unit "_month";

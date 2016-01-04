@@ -40,9 +40,9 @@ SELECT fxfloperatorname,sum(xtsl) xtsl,sum(xtmy) xtmy,sum(xtsy) xtsy,sum(xtsy)/s
 门店退货分类业务员 折扣率 柱状图
 SELECT fxfloperatorname,sum(xtsy)/sum(xtmy) zkl FROM 4_2_result GROUP BY fxfloperatorname;
 门店退货分类业务员名称 分类 码洋 饼图
-SELECT fxfloperatorname,rjfxid,rjflmc,sum(xtmy) xtmy FROM 4_2_result  GROUP BY fxfloperatorname,rjfxid,rjflmc;
+SELECT fxfloperatorname,rjfxid,rjflmc,sum(xtmy) xtmy FROM 4_2_result where fxfloperatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;
 门店退货分类业务员名称 分类 折扣率 柱状图
-SELECT fxfloperatorname,rjfxid,rjflmc,sum(xtsy)/sum(xtmy) zkl FROM 4_2_result where fxfloperatorname = "冯琳" GROUP BY fxfloperatorname,rjfxid,rjflmc;
+SELECT fxfloperatorname,rjfxid,rjflmc,sum(xtsy)/sum(xtmy) zkl FROM 4_2_result where fxfloperatorname = "陆悦" GROUP BY fxfloperatorname,rjfxid,rjflmc;
 
 
 门店退货财务大类 码洋 饼图
@@ -52,7 +52,7 @@ SELECT cwdlid,cwfl,sum(xtsl) xtsl,sum(xtmy) xtmy,sum(xtsy) xtsy FROM 4_2_result 
 门店退货财务大类 折扣率 柱状图
 SELECT cwdlid,cwfl,sum(xtsy)/sum(xtmy) zkl FROM 4_2_result group by cwdlid,cwfl;
 门店退货财务大类 分类 码洋 饼图
-SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(xtmy) xtmy FROM 4_2_result  GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
+SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(xtmy) xtmy FROM 4_2_result where cwfl = "动漫读物" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
 门店退货财务大类 分类 折扣率 柱状图
 SELECT cwdlid,cwfl,rjfxid,rjflmc,sum(xtsy)/sum(xtmy) zkl FROM 4_2_result where cwfl = "动漫读物" GROUP BY cwdlid,cwfl,rjfxid,rjflmc;
 
@@ -63,6 +63,6 @@ SELECT dqmc,sum(xtmy) xtmy,sum(xtsy) xtsy,sum(xtsl) xtsl from 4_2_result GROUP B
 门店退货地区 折扣率 柱状图
 SELECT dqmc,sum(xtsy)/sum(xtmy) zkl from 4_2_result GROUP BY dqmc;
 门店退货地区 门店 码洋 饼图
-SELECT dqmc,khid,dwmc,sum(xtmy) xtmy from 4_2_result  GROUP BY dqmc,khid,dwmc;
+SELECT dqmc,khid,dwmc,sum(xtmy) xtmy from 4_2_result where dqmc = "长沙" GROUP BY dqmc,khid,dwmc;
 门店退货地区 门店 码洋 柱状图
 SELECT dqmc,khid,dwmc,sum(xtsy)/sum(xtmy) zkl from 4_2_result where dqmc = "长沙" GROUP BY dqmc,khid,dwmc;
